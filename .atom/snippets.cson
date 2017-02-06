@@ -14,6 +14,20 @@
 #endif
 """
 
+'source.cpp':
+  'Multiline Comment':
+    'prefix': 'mcm'
+    'body': """
+/*
+ *
+ */
+"""
+  'Vector':
+    'prefix': 'vec'
+    'body': """
+std::vector<${1:type}>
+"""
+
 '.text.tex.latex':
   'Typewriter Text':
     'prefix': 'tt'

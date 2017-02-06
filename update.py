@@ -1,6 +1,6 @@
 import pathlib
 import os
-from shutil import copytree, copy2
+from shutil import copytree, copy2, rmtree
 
 class Updater:
     def __init__(self, path):
@@ -24,19 +24,22 @@ class Updater:
         return most_recent
 
     def update(self):
+        print("Checking {0}".format(self.path.stem))
         if self.get_mod_time(self.path) > self.get_mod_time(self.stored_path):
+            print("  Copying {0} -> {1}... ".format(self.path, self.stored_path), end = "")
             self.copy(self.path, self.stored_path)
-            print("Updated {0} -> {1}".format(self.path, self.stored_path))
+            print("Finished.")
         elif self.get_mod_time(self.path) < self.get_mod_time(self.stored_path):
+            print("  Copying {1} -> {0}... ".format(self.path, self.stored_path), end = "")
             self.copy(self.stored_path, self.path)
-            print("Updated {1} -> {0}".format(self.path, self.stored_path))
+            print("Finished.")
         else:
-            print("Nothing Updated")
+            print("  Nothing Updated")
 
     def copy(self, src, dst):
         if src.is_dir():
             if dst.exists():
-                os.remove(str(dst))
+                rmtree(str(dst))
             copytree(str(src), str(dst), False, None)
         elif src.is_file():
             copy2(str(src), str(dst))
@@ -47,6 +50,7 @@ def main():
     "~/.bash_aliases",
     "~/.bashrc",
     "~/.vimrc",
+    "~/.vim",
     "~/.atom"
     ]
     for f in important_files:
