@@ -14,7 +14,7 @@
 #endif
 """
 
-'source.cpp':
+'.source.cpp':
   'Multiline Comment':
     'prefix': 'mcm'
     'body': """
@@ -25,7 +25,7 @@
   'Vector':
     'prefix': 'vec'
     'body': """
-std::vector<${1:type}>
+std::vector<${1:type}> ${2:continue}
 """
 
 '.text.tex.latex':

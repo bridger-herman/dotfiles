@@ -51,7 +51,8 @@ def main():
     "~/.bashrc",
     "~/.vimrc",
     "~/.vim",
-    "~/.atom"
+    "~/.atom",
+    "~/.tmux.conf"
     ]
     for f in important_files:
         u = Updater(f)
