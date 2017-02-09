@@ -30,8 +30,7 @@
       "text.plain.null-grammar"
       "text.tex.latex"
     ]
-  "tree-view":
-    hideVcsIgnoredFiles: true
+  "tree-view": {}
   welcome:
     showOnStartup: false
 ".python.source":

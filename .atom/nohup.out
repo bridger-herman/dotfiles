@@ -1,2 +1,2 @@
-App load time: 844ms
+App load time: 796ms
 (electron) app.getDataPath is deprecated. Use app.getPath instead.
