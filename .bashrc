@@ -138,9 +138,11 @@ fi
 
 umask 077
 
+if [ -f /soft/rko-modules/tcl/init/bash ]; then
 . /soft/rko-modules/tcl/init/bash
 
 #module load soft/gcc java perl gnu local compilers system x11  soft/ocaml
 module load java perl gnu local compilers system x11  soft/ocaml
 module load openwin math/mathematica scheme user
 
+fi

@@ -7,7 +7,7 @@ class Updater:
         self.path = pathlib.Path(path).expanduser()
         if self.path.exists():
             self.path = self.path.resolve()
-        self.stored_path = pathlib.Path(self.path.stem)
+        self.stored_path = pathlib.Path(self.path.name)
         if self.stored_path.exists():
             self.stored_path = self.stored_path.resolve()
 
@@ -24,7 +24,7 @@ class Updater:
         return most_recent
 
     def update(self):
-        print("Checking {0}".format(self.path.stem))
+        print("Checking {0}".format(self.path.name))
         if self.get_mod_time(self.path) > self.get_mod_time(self.stored_path):
             print("  Copying {0} -> {1}... ".format(self.path, self.stored_path), end = "")
             self.copy(self.path, self.stored_path)
