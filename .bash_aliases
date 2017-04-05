@@ -18,3 +18,6 @@ alias finder='/home/bridger/GitHub/projects/./finder.py'
 
 # Blender
 alias blender='/home/bridger/Programs/blender-2.77a-linux-glibc211-x86_64/./blender'
+
+# vim
+alias v='/usr/bin/vim'
