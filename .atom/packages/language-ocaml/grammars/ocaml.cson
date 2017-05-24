@@ -21,6 +21,38 @@
     'name': 'meta.module.binding'
   }
   {
+    'comment': 'Scoped declaration'
+    'begin': '(?=\\blet\\b)'
+    'end': '(?<=in)'
+    'patterns': [
+      {
+        'comment': 'Matches everything between the `let` and the `=`'
+        'begin': '\\blet\\b'
+        'beginCaptures':
+          '0':
+            'name': 'keyword.other.let_binding.ocaml'
+        'end': '(?==)'
+        'patterns': [
+          {'include': '$self'}
+        ]
+      }
+      {
+        'comment': 'Matches everything between the `=` and the `in`'
+        'begin': '='
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.separator.assignment.ocaml'
+        'end': '\\bin\\b'
+        'endCaptures':
+          '0':
+            'name': 'keyword.other.in.ocaml'
+        'patterns': [
+          {'include': '$self'}
+        ]
+      }
+    ]
+  }
+  {
     'begin': '\\b(let)\\s+(open)\\s+([A-Z][a-zA-Z0-9\'_]*)(?=(\\.[A-Z][a-zA-Z0-9_]*)*)'
     'beginCaptures':
       '1':
@@ -70,36 +102,7 @@
     ]
   }
   {
-    'begin': '(\\(|\\s)(?=fun\\s)'
-    'beginCaptures':
-      '1':
-        'name': 'punctuation.definition.function.anonymous.ocaml'
-    'end': '(\\))'
-    'endCaptures':
-      '1':
-        'name': 'punctuation.definition.function.anonymous.ocaml'
-    'name': 'meta.function.anonymous.ocaml'
-    'patterns': [
-      {
-        'begin': '(?<=(\\(|\\s))(fun)\\s'
-        'beginCaptures':
-          '2':
-            'name': 'keyword.other.function-definition.ocaml'
-        'end': '(->)'
-        'endCaptures':
-          '1':
-            'name': 'punctuation.separator.function-definition.ocaml'
-        'name': 'meta.function.anonymous.definition.ocaml'
-        'patterns': [
-          {
-            'include': '#variables'
-          }
-        ]
-      }
-      {
-        'include': '$self'
-      }
-    ]
+    'include': '#anonymous-function-def'
   }
   {
     'begin': '^\\s*(?=type\\s)'
@@ -126,7 +129,7 @@
     ]
   }
   {
-    'begin': '\\b(with|function)(?=(\\s*$|.*->))\\b|((?<!\\S)(\\|)(?=(\\w|\\s).*->))'
+    'begin': '(?:\\b(with|function)(?=(\\s*$|.*->))\\b|((?<!\\S)(?:\\|)(?=(?:\\w|\\s).*)))(?:\\s*(exception)\\b)?'
     'beginCaptures':
       '1':
         'name': 'keyword.control.match-definition.ocaml'
@@ -134,6 +137,8 @@
         'name': 'keyword.other.function-definition.ocaml'
       '3':
         'name': 'keyword.control.match-definition.ocaml'
+      '4':
+        'name': 'keyword.control.match-exception.ocaml'
     'end': '(?:(->)|\\b(when)\\b|(?:^|\\s)(?=\\|))'
     'endCaptures':
       '1':
@@ -410,7 +415,9 @@
         'name': 'keyword.other.ocaml'
       '2':
         'name': 'entity.name.type.exception.ocaml'
-    'match': '\\b(exception)\\s+([A-Z][a-zA-Z0-9\'_]*)\\b'
+      '3':
+        'name': 'keyword.other.ocaml'
+    'match': '\\b(exception)\\s+([A-Z][a-zA-Z0-9\'_]*)(?:\\s+(of))?\\b'
     'name': 'meta.exception.ocaml'
   }
   {
@@ -503,11 +510,11 @@
     'name': 'entity.name.type.variant.ocaml'
   }
   {
-    'match': '!=|:=|>|<'
-    'name': 'keyword.operator.symbol.ocaml'
+    'match': '[*+/-](?![|!$%&*+./:<=>?@^~-])'
+    'name': 'keyword.operator.infix.integer.ocaml'
   }
   {
-    'match': '[*+/-]\\.'
+    'match': '[*+/-]\\.(?![|!$%&*+./:<=>?@^~-])'
     'name': 'keyword.operator.infix.floating-point.ocaml'
   }
   {
@@ -527,12 +534,15 @@
     'name': 'punctuation.separator.ocaml'
   }
   {
-    'match': '->'
+    'match': '->(?![|!$%&*+./:<=>?@^~-])'
     'name': 'punctuation.separator.function-return.ocaml'
   }
   {
+    'include': '#pervasives'
+  }
+  {
     'match': '[=<>@^&+\\-*/$%|][|!$%&*+./:<=>?@^~-]*'
-    'name': 'keyword.operator.infix.ocaml'
+    'name': 'entity.name.function.infix.ocaml'
   }
   {
     'match': '\\bnot\\b|!|[!\\?~][!$%&*+./:<=>?@^~-]+'
@@ -620,8 +630,8 @@
     'name': 'keyword.control.ocaml'
   }
   {
-    'match': '\\b(as|assert|class|constraint|exception|functor|in|include|inherit|initializer|lazy|let|mod|module|mutable|new|object|open|private|rec|sig|struct|type|virtual)\\b'
-    'name': 'keyword.other.ocaml'
+    'match': '\\b(as|assert|class|constraint|exception|functor|in|include|inherit|initializer|lazy|let|mod|module|mutable|new|object|open|private|rec|raise|sig|struct|type|virtual)\\b'
+    'name': 'keyword.other.misc.ocaml'
   }
   {
     'include': '#module-signature'
@@ -632,6 +642,70 @@
   }
 ]
 'repository':
+  'pervasives':
+    'patterns': [
+      {
+        'match': '\\b(raise|raise_notrace|invalid_arg|failwith)\\b'
+        'name': 'support.function.pervasives.exceptions.ocaml'
+      }
+      {
+        'match': '\\b(compare|min|max)\\b'
+        'name': 'support.function.pervasives.comparisons.ocaml'
+      }
+      {
+        'match': '(?<![|!$%&*+./:<=>?@^~-])(=|<>|<|>|<=|>=|==|!=)(?![|!$%&*+./:<=>?@^~-])'
+        'name': 'support.function.pervasives.comparisons.ocaml'
+      }
+      {
+        'match': '\\bnot\\b'
+        'name': 'support.function.pervasives.boolean-operatons.ocaml'
+      }
+      {
+        'match': '(?<![|!$%&*+./:<=>?@^~-])(&&|\\|\\|)(?![|!$%&*+./:<=>?@^~-])'
+        'name': 'support.function.pervasives.boolean-operatons.ocaml'
+      }
+      {
+        'match': '\\b(__LOC__|__FILE__|__LINE__|__MODULE__|__POS__|__LOC_OF__|__LINE_OF__|__POS_OF__)\\b'
+        'name': 'support.function.pervasives.debugging.ocaml'
+      }
+      {
+        'match': '(?<![|!$%&*+./:<=>?@^~-])(\\|>|@@)(?![|!$%&*+./:<=>?@^~-])'
+        'name': 'support.function.pervasives.composition.ocaml'
+      }
+      {
+        'match': '(?<![|!$%&*+./:<=>?@^~-])\\^(?![|!$%&*+./:<=>?@^~-])'
+        'name': 'support.function.pervasives.string-operation.ocaml'
+      }
+      {
+        'match': '(?<![|!$%&*+./:<=>?@^~-])&(?![|!$%&*+./:<=>?@^~-])'
+        'name': 'invalid.deprecated.pervasives.boolean-operatons.ocaml'
+      }
+      {
+        'match': '\\bor\\b'
+        'name': 'invalid.deprecated.pervasives.boolean-operatons.ocaml'
+      }
+    ]
+
+
+  'anonymous-function-def':
+    'patterns': [
+      {
+        'begin': '\\bfun\\b'
+        'beginCaptures':
+          '0':
+            'name': 'keyword.other.function-definition.ocaml'
+        'end': '->'
+        'endCaptures':
+          '0':
+            'name': 'keyword.other.anonymous-function-arrow.ocaml'
+        'name': 'meta.function.anonymous.definition.ocaml'
+        'patterns': [
+          {
+            'include': '#variables'
+          }
+        ]
+      }
+    ]
   'arrays':
     'patterns': [
       {
@@ -669,6 +743,10 @@
         'patterns': [
           {
             'include': '#comments'
+          }
+          {
+            'include': '#comment_strings'
+            'name': 'comment.block.ocaml'
           }
         ]
       }
@@ -810,13 +888,13 @@
   'module-signature':
     'patterns': [
       {
-        'begin': '(val)\\s+([a-z_][a-zA-Z0-9_\']*)\\s*(:)'
+        'begin': '(val)\\s+(([a-z_][a-zA-Z0-9_\']*)|(\\(\\s*[=<>@^&+\\-*/$%|][|!$%&*+./:<=>?@^~-]*\\s*\\)))\\s*(:)'
         'beginCaptures':
           '1':
             'name': 'keyword.other.ocaml'
           '2':
             'name': 'entity.name.type.value-signature.ocaml'
-          '3':
+          '5':
             'name': 'punctuation.separator.type-constraint.ocaml'
         'end': '(?=\\b(type|val|external|class|module|end)\\b)|^\\s*$'
         'name': 'meta.module.signature.val.ocaml'
@@ -958,6 +1036,27 @@
         ]
       }
     ]
+  'comment_strings':
+    'patterns': [
+      {
+        'begin': '(?=[^\\\\])(")'
+        'end': '(")'
+        'patterns': [
+          {
+            'match': '\\\\$[ \\t]*'
+          }
+          {
+            'match': '\\\\(x[a-fA-F0-9][a-fA-F0-9]|[0-2]\\d\\d|[bnrt\'"\\\\])'
+          }
+          {
+            'match': '\\\\[\\|\\(\\)1-9$^.*+?\\[\\]]'
+          }
+          {
+            'match': '\\\\(?!(x[a-fA-F0-9][a-fA-F0-9]|[0-2]\\d\\d|[bnrt\'"\\\\]|[\\|\\(\\)1-9$^.*+?\\[\\]]|$[ \\t]*))(?:.)'
+          }
+        ]
+      }
+    ]
   'typedefs':
     'patterns': [
       {
@@ -1025,7 +1124,11 @@
     'patterns': [
       {
         'match': '\\(\\)'
-        'name': 'variable.parameter.unit.ocaml'
+        'name': 'constant.language.unit.ocaml'
+      }
+      {
+        'match': '\\b_\\b'
+        'name': 'constant.language.universal-match.ocaml'
       }
       {
         'include': '#constants'
@@ -1051,13 +1154,21 @@
         ]
       }
       {
-        'captures':
+        'begin': '(\\?)([a-z][a-zA-Z0-9_]*)(\\s*:\\s*)?'
+        'beginCaptures':
           '1':
             'name': 'punctuation.definition.optional-parameter.ocaml'
           '2':
             'name': 'entity.name.tag.variable.optional.ocaml'
-        'match': '(\\?)([a-z][a-zA-Z0-9_]*)'
+          '3':
+            'name': 'punctuation.separator.variable.ocaml'
+        'end': '(?=(->|\\s))'
         'name': 'variable.parameter.optional.ocaml'
+        'patterns': [
+          {
+            'include': '#variables'
+          }
+        ]
       }
       {
         'begin': '(\\?)(\\()([a-z_][a-zA-Z0-9\'_]*)\\s*(=)'

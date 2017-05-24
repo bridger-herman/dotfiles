@@ -1,264 +1,138 @@
-'fileTypes': [
-  'mly'
-]
-'foldingStartMarker': '%{|%%'
-'foldingStopMarker': '%}|%%'
 'name': 'Menhir'
+'fileTypes': ['mly']
+'scopeName': 'source.menhir'
 'patterns': [
+  {'include': '#comment'}
   {
-    'begin': '(%{)\\s*$'
-    'beginCaptures':
-      '1':
-        'name': 'punctuation.section.header.begin.menhir'
-    'end': '^\\s*(%})'
-    'endCaptures':
-      '1':
-        'name': 'punctuation.section.header.end.menhir'
-    'name': 'meta.header.menhir'
-    'patterns': [{ 'include': 'source.ocaml' }]
-  }
-  {
-    'begin': '(?<=%})\\s*$'
-    'end': '(?:^)(?=%%)'
-    'name': 'meta.declarations.menhir'
+    'begin': '(?=%[^%])'
+    'end': '(?=%%)'
     'patterns': [
-      { 'include': '#comments' }
-      { 'include': '#declaration-matches' }
+      {'include': '#comment'}
+      {'include': '#declaration'}
     ]
   }
   {
-    'begin': '(%%)\\s*$'
+    'begin': '%%'
     'beginCaptures':
-      '1':
-        'name': 'punctuation.section.rules.begin.menhir'
-    'end': '^\\s*(%%)'
+      '0': {'name': 'keyword.other.menhir'}
+    'end': '%%'
     'endCaptures':
-      '1':
-        'name': 'punctuation.section.rules.end.menhir'
-    'name': 'meta.rules.menhir'
+      '0': {'name': 'keyword.other.menhir'}
     'patterns': [
-      { 'include': '#comments' }
-      { 'include': '#rules' }
+      {'include': '#comment'}
+      {'include': '#rule'}
     ]
   }
-  { 'include': 'source.ocaml' }
-  { 'include': '#comments' }
-  {
-    'match': '(’|‘|“|”)'
-    'name': 'invalid.illegal.unrecognized-character.ocaml'
-  }
+  {'include': 'source.ocaml'}
 ]
 'repository':
-  'comments':
+  'declaration':
+    'patterns': [
+      {
+        'begin': '%{'
+        'beginCaptures':
+          '0': {'name': 'keyword.other.menhir'}
+        'end': '%}'
+        'endCaptures':
+          '0': {'name': 'keyword.other.menhir'}
+        'patterns': [{'include': 'source.ocaml'}]
+      }
+      {
+        'match': '(%parameter|%start|%type|%token|%nonassoc|%left|%right|%on_error_reduce)\\b'
+        'name': 'keyword.other.menhir'
+      }
+      {
+        'begin': '(<)\\s*([a-zA-Z][a-zA-Z0-9_]*)\\s*(:)'
+        'beginCaptures':
+          '1': {'name': 'keyword.other.menhir'}
+          '2': {'name': 'variable.parameter.module.menhir'}
+          '3': {'name': 'keyword.other.menhir'}
+        'end': '(>)'
+        'endCaptures':
+          '1': {'name': 'keyword.other.menhir'}
+        'patterns': [{'include': 'source.ocaml'}]
+      }
+      {
+        'begin': '(<)'
+        'beginCaptures':
+          '1': {'name': 'keyword.other.menhir'}
+        'end': '(>)'
+        'endCaptures':
+          '1': {'name': 'keyword.other.menhir'}
+        'patterns': [{'include': 'source.ocaml#typedefs'}]
+      }
+    ]
+  'rule':
+    'patterns': [
+      {
+        'match': '([a-z][a-zA-Z0-9_]*)\\s*(?:\\(([^)]+)\\))?(?=\\s*:)'
+        'captures':
+          '1': {'name': 'entity.name.function.rule.menhir'}
+          '2': {'patterns': [{'include': '#ident'}]}
+      }
+      {
+        'match': '%public|%inline|%prec'
+        'name': 'keyword.other.directive.menhir'
+      }
+      {
+        'begin': '(:|\\|)'
+        'beginCaptures':
+          '1': {'name': 'keyword.other.menhir'}
+        'end': '(?={)'
+        'patterns': [
+          {'include': '#comment'}
+          {'include': '#variable'}
+          {'include': '#reference'}
+          {'include': '#operator'}
+        ]
+      }
+      {
+        'begin': '({)'
+        'beginCaptures':
+          '1': {'name': 'keyword.other.menhir'}
+        'end': '(})'
+        'endCaptures':
+          '1': {'name': 'keyword.other.menhir'}
+        'patterns': [{'include': 'source.ocaml'}]
+      }
+    ]
+  'comment':
     'patterns': [
       {
         'begin': '/\\*'
         'end': '\\*/'
         'name': 'comment.block.menhir'
-        'patterns': [{ 'include': '#comments' }]
       }
       {
         'begin': '\\(\\*'
-        'beginCaptures':
-          '0':
-            'name': 'punctuation.definition.comment.begin.menhir'
         'end': '\\*\\)'
-        'endCaptures':
-          '0':
-            'name': 'punctuation.definition.comment.end.menhir'
         'name': 'comment.block.other.menhir'
-        'patterns': [{ 'include': '#comments' }]
-      }
-      {
-        'begin': '(?=[^\\\\])(")'
-        'end': '"'
-        'name': 'comment.block.string.quoted.double.menhir'
-        'patterns': [
-          {
-            'match': '\\\\(x[a-fA-F0-9][a-fA-F0-9]|[0-2]\\d\\d|[bnrt\'"\\\\])'
-            'name': 'comment.block.string.constant.character.escape.menhir'
-          }
-        ]
       }
     ]
-  'declaration-matches':
+  'variable':
+    'match': '([a-z][a-zA-Z0-9_]*)\\s*='
+    'captures':
+      '1':
+        'name': 'variable.parameter.value.menhir'
+    'patterns': [{'include': '#reference'}]
+  'reference':
     'patterns': [
       {
-        'begin': '(%)(token)'
-        'beginCaptures':
-          '1':
-            'name': 'keyword.other.decorator.token.menhir'
-          '2':
-            'name': 'keyword.other.token.menhir'
-        'end': '^\\s*($|(^\\s*(?=%)))'
-        'name': 'meta.token.declaration.menhir'
-        'patterns': [
-          { 'include': '#symbol-types' }
-          {
-            'match': '[A-Z][A-Za-z0-9_]*'
-            'name': 'entity.name.type.token.menhir'
-          }
-          { 'include': '#comments' }
-        ]
+        'match': '\\b(?:[ibl]?option|pair|separated_pair|preceded|terminated|delimited|list|nonempty_list|separated_list|separated_nonempty_list)\\b',
+        'name': 'support.function.rule.menhir'
       }
-      {
-        'begin': '(%)(left|right|nonassoc)'
-        'beginCaptures':
-          '1':
-            'name': 'keyword.other.decorator.token.associativity.menhir'
-          '2':
-            'name': 'keyword.other.token.associativity.menhir'
-        'end': '(^\\s*$)|(^\\s*(?=%))'
-        'name': 'meta.token.associativity.menhir'
-        'patterns': [
-          {
-            'match': '[A-Z][A-Za-z0-9_]*'
-            'name': 'entity.name.type.token.menhir'
-          }
-          {
-            'match': '[a-z][A-Za-z0-9_]*'
-            'name': 'entity.name.function.non-terminal.reference.menhir'
-          }
-          { 'include': '#comments' }
-        ]
-      }
-      {
-        'begin': '(%)(start)'
-        'beginCaptures':
-          '1':
-            'name': 'keyword.other.decorator.start-symbol.menhir'
-          '2':
-            'name': 'keyword.other.start-symbol.menhir'
-        'end': '^\\s*($|(^\\s*(?=%)))'
-        'name': 'meta.start-symbol.menhir'
-        'patterns': [
-          { 'include': '#symbol-types'}
-          {
-            'match': '[a-z][A-Za-z0-9_]*'
-            'name': 'entity.name.function.non-terminal.reference.menhir'
-          }
-          { 'include': '#comments' }
-        ]
-      }
-      {
-        'begin': '(%)(type)'
-        'beginCaptures':
-          '1':
-            'name': 'keyword.other.decorator.symbol-type.menhir'
-          '2':
-            'name': 'keyword.other.symbol-type.menhir'
-        'end': '$\\s*(?!%)'
-        'name': 'meta.symbol-type.menhir'
-        'patterns': [
-          { 'include': '#symbol-types' }
-          {
-            'match': '[A-Z][A-Za-z0-9_]*'
-            'name': 'entity.name.type.token.reference.menhir'
-          }
-          {
-            'match': '[a-z][A-Za-z0-9_]*'
-            'name': 'entity.name.function.non-terminal.reference.menhir'
-          }
-          { 'include': '#comments' }
-        ]
-      }
+      {'include': '#uident'}
+      {'include': '#lident'}
     ]
-  'precs':
-    'patterns': [
-      {
-        'captures':
-          '1':
-            'name': 'keyword.other.decorator.precedence.menhir'
-          '2':
-            'name': 'keyword.other.precedence.menhir'
-          '4':
-            'name': 'entity.name.function.non-terminal.reference.menhir'
-          '5':
-            'name': 'entity.name.type.token.reference.menhir'
-        'match': '(%)(prec)\\s+(([a-z][a-zA-Z0-9_]*)|(([A-Z][a-zA-Z0-9_]*)))'
-        'name': 'meta.precedence.declaration'
-      }
-    ]
-  'variables':
-    'patterns': [
-      {
-        'match': '([a-z][A-Za-z0-9_]*)\\s*='
-        'captures':
-          '1':
-            'name': 'variable.parameter.menhir'
-        'name': 'meta.assignment.menhir'
-        'patterns': [{ 'include': '#references' }]
-      }
-    ]
-  'references':
-    'patterns': [
-      {
-        'match': '[a-z][a-zA-Z0-9_]*'
-        'name': 'entity.name.function.non-terminal.reference.menhir'
-      }
-      {
-        'match': '[A-Z][a-zA-Z0-9_]*'
-        'name': 'entity.name.type.token.reference.menhir'
-      }
-    ]
-  'rule-patterns':
-    'patterns': [
-      {
-        'begin': '((?<!\\|)(\\|)(?!:))'
-        'end': '(?<=})\s'
-        'name': 'meta.rule-pattern.menhir'
-        'patterns': [
-          { 'include': '#precs' }
-          { 'include': '#semantic-actions' }
-          { 'include': '#variables' }
-          { 'include': '#references' }
-          { 'include': '#comments' }
-        ]
-      }
-    ]
-  'rules':
-    'patterns': [
-      {
-        'begin': '([a-z][a-zA-Z_]*)(?>\\s*(:|\\|))'
-        'beginCaptures':
-          '1':
-            'name': 'entity.name.function.non-terminal.rule.begin.menhir'
-        'end': '(?<=})\s(?!\\|)'
-        'endCaptures':
-          '0':
-            'name': 'entity.name.function.non-terminal.rule.end.menhir'        
-        'name': 'meta.non-terminal.rule.menhir'
-        'patterns': [{ 'include': '#rule-patterns' }]
-      }
-    ]
-  'semantic-actions':
-    'patterns': [
-      {
-        'begin': '[^\\\']({)'
-        'beginCaptures':
-          '1':
-            'name': 'punctuation.definition.action.semantic.begin.menhir'
-        'end': '(})'
-        'endCaptures':
-          '1':
-            'name': 'punctuation.definition.action.semantic.end.menhir'
-        'name': 'meta.action.semantic.menhir'
-        'patterns': [{ 'include': 'source.ocaml' }]
-      }
-    ]
-  'symbol-types':
-    'patterns': [
-      {
-        'begin': '<'
-        'beginCaptures':
-          '0':
-            'name': 'punctuation.definition.type-declaration.begin.menhir'
-        'end': '>'
-        'endCaptures':
-          '0':
-            'name': 'punctuation.definition.type-declaration.end.menhir'
-        'name': 'meta.token.type-declaration.menhir'
-        'patterns': [{ 'include': 'source.ocaml' }]
-      }
-    ]
-'scopeName': 'source.menhir'
+  'operator':
+    'match': '[+*?|]'
+    'name': 'keyword.operator.menhir'
+  'uident':
+    'match': '[A-Z][a-zA-Z0-9_]*'
+    'name': 'entity.name.token.menhir'
+  'lident':
+    'match': '[a-z][a-zA-Z0-9_]*'
+    'name': 'entity.name.function.rule.menhir'
+  'ident':
+    'match': '[a-zA-Z][a-zA-Z0-9_]*'
+    'name': 'variable.parameter.rule.menhir'

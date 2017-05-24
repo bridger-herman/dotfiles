@@ -37,6 +37,10 @@ highlight SpellLocal ctermbg=24
 " highlight Structure ctermfg=227
 " highlight Typedef ctermfg=227
 
+highlight EasyMotionTarget ctermbg=none ctermfg=46 cterm=bold
+highlight EasyMotionShade  ctermbg=none ctermfg=245
+
+
 syntax on
 filetype plugin indent on
 
@@ -52,7 +56,7 @@ set softtabstop=2 " Number of spaces in tab when editing
 set expandtab " Spaces instead of tabs
 
 autocmd FileType python setlocal softtabstop=4 shiftwidth=4 " Python specific settings
-autocmd FileType make setlocal set noexpandtab " MakeFile specific settings
+autocmd FileType make setlocal noexpandtab " MakeFile specific settings
 
 " Spell checker
 autocmd FileType markdown setlocal spell spelllang=en
@@ -110,3 +114,6 @@ let g:ycm_filetype_blacklist = {}
 
 " Close scratch window
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" Avoid 'still no compile flags' error TODO doesn't work
+let g:ycm_global_ycm_extra_conf = '/home/bridger/.vim/bundle/youcompleteme/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py' 

@@ -1,4 +1,5 @@
 # OCaml Atom package
+
 Adds syntax highlighting to OCaml files in Atom.
 
 Originally [converted](https://atom.io/docs/latest/converting-a-text-mate-bundle) from the [OCaml TextMate bundle](https://github.com/textmate/ocaml.tmbundle).

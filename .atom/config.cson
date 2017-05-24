@@ -12,7 +12,7 @@
   editor:
     autoIndentOnPaste: false
     fontFamily: "Ubuntu Mono"
-    fontSize: 20
+    fontSize: 21
     invisibles: {}
     scrollPastEnd: true
     showInvisibles: true

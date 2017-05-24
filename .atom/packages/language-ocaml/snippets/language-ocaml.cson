@@ -33,6 +33,9 @@
   'let':
     'prefix': 'let'
     'body': 'let ${1:var(s)} = ${0:expr}'
+  'let_':
+    'prefix': 'let_'
+    'body': 'let (_:int) = ${0:expr}'
   'match pattern':
     'prefix': '|'
     'body': '| ${1:pattern} -> $0'
