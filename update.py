@@ -2,6 +2,8 @@ import pathlib
 import os
 from shutil import copytree, copy2, rmtree
 
+do_copy = lambda: input("    Are you sure? (y/n): ").lower().strip() == "y"
+
 class Updater:
     def __init__(self, path):
         self.path = pathlib.Path(path).expanduser()
@@ -26,13 +28,19 @@ class Updater:
     def update(self):
         print("Checking {0}".format(self.path.name))
         if self.get_mod_time(self.path) > self.get_mod_time(self.stored_path):
-            print("  Copying {0} -> {1}... ".format(self.path, self.stored_path), end = "")
-            self.copy(self.path, self.stored_path)
-            print("Finished.")
+            print("  Copying {0} -> {1}... ".format(self.path, self.stored_path))
+            if do_copy():
+                self.copy(self.path, self.stored_path)
+                print("    Finished.")
+            else:
+                print("    Not copied.")
         elif self.get_mod_time(self.path) < self.get_mod_time(self.stored_path):
-            print("  Copying {1} -> {0}... ".format(self.path, self.stored_path), end = "")
-            self.copy(self.stored_path, self.path)
-            print("Finished.")
+            print("  Copying {1} -> {0}... ".format(self.path, self.stored_path))
+            if do_copy():
+                self.copy(self.stored_path, self.path)
+                print("    Finished.")
+            else:
+                print("    Not copied.")
         else:
             print("  Nothing Updated")
 
@@ -46,13 +54,13 @@ class Updater:
 
 def main():
     important_files = [
-    "~/.zshrc",
-    "~/.bash_aliases",
-    "~/.bashrc",
-    "~/.vimrc",
-    "~/.vim",
-    "~/.atom",
-    "~/.tmux.conf"
+        "~/.zshrc",
+        "~/.bash_aliases",
+        "~/.bashrc",
+        "~/.vimrc",
+        "~/.vim",
+        "~/.atom",
+        "~/.tmux.conf"
     ]
     for f in important_files:
         u = Updater(f)
