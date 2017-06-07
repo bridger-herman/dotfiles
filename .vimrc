@@ -5,41 +5,7 @@ execute pathogen#infect()
 " Set terminal Colors
 set t_Co=256
 
-" TODO
-" highlight SpecialComment ctermfg=83
-
-highlight LineNr ctermfg=15
-
-highlight Number ctermfg=213
-highlight String ctermfg=118
-
-highlight Statement ctermfg=81
-highlight Conditional ctermfg=81
-highlight Repeat ctermfg=81
-highlight Label ctermfg=81
-highlight Keyword ctermfg=81
-highlight Exception ctermfg=81
-highlight Operator ctermfg=15 cterm=bold
-
-highlight Function ctermfg=222
-
-highlight Pmenu ctermbg=239 ctermfg=46
-highlight PmenuSel ctermbg=46 ctermfg=239
-
-highlight SpellBad ctermbg=124
-highlight SpellCap ctermbg=71
-highlight SpellRare ctermbg=53
-highlight SpellLocal ctermbg=24
-
-" TODO
-" highlight Type ctermfg=227
-" highlight StorageClass ctermfg=227
-" highlight Structure ctermfg=227
-" highlight Typedef ctermfg=227
-
-highlight EasyMotionTarget ctermbg=none ctermfg=46 cterm=bold
-highlight EasyMotionShade  ctermbg=none ctermfg=245
-
+colorscheme atom_nuevo
 
 syntax on
 filetype plugin indent on
@@ -89,6 +55,8 @@ imap jk <Esc><Right>
 
 " <Ctrl-l> redraws the screen and removes any search highlighting.
 nnoremap <silent> <C-l> :nohl<CR><C-l>
+
+let mapleader = ","
 
 " ---------- Miscellaneous Settings ---------- 
 
