@@ -1,0 +1,4 @@
+pane	olpd	0	:~	1	:*	0	:/home/bridger	0	zsh	:
+pane	olpd	0	:~	1	:*	1	:/home/bridger	1	zsh	:
+window	olpd	0	1	:*	cd9c,190x51,0,0[190x40,0,0,0,190x10,0,41,1]
+state	olpd	

@@ -21,38 +21,6 @@
     'name': 'meta.module.binding'
   }
   {
-    'comment': 'Scoped declaration'
-    'begin': '(?=\\blet\\b)'
-    'end': '(?<=in)'
-    'patterns': [
-      {
-        'comment': 'Matches everything between the `let` and the `=`'
-        'begin': '\\blet\\b'
-        'beginCaptures':
-          '0':
-            'name': 'keyword.other.let_binding.ocaml'
-        'end': '(?==)'
-        'patterns': [
-          {'include': '$self'}
-        ]
-      }
-      {
-        'comment': 'Matches everything between the `=` and the `in`'
-        'begin': '='
-        'beginCaptures':
-          '0':
-            'name': 'punctuation.separator.assignment.ocaml'
-        'end': '\\bin\\b'
-        'endCaptures':
-          '0':
-            'name': 'keyword.other.in.ocaml'
-        'patterns': [
-          {'include': '$self'}
-        ]
-      }
-    ]
-  }
-  {
     'begin': '\\b(let)\\s+(open)\\s+([A-Z][a-zA-Z0-9\'_]*)(?=(\\.[A-Z][a-zA-Z0-9_]*)*)'
     'beginCaptures':
       '1':
@@ -74,30 +42,54 @@
     ]
   }
   {
-    'begin': '\\b(let|and)\\s+(?!\\(\\*)((rec\\s+)([a-z_][a-zA-Z0-9_\']*)\\b|([a-z_][a-zA-Z0-9_\']*|\\([^)]+\\))(?=\\s)((?=\\s*=\\s*(?=fun(?:ction)\\b))|(?!\\s*=)))'
-    'beginCaptures':
-      '1':
-        'name': 'keyword.other.function-definition.ocaml'
-      '3':
-        'name': 'keyword.other.funtion-definition.ocaml'
-      '4':
-        'name': 'entity.name.function.ocaml'
-      '5':
-        'name': 'entity.name.function.ocaml'
-    'end': '(?:(:)\\s*([^=]+))?(?:(=)|(=)\\s*(?=fun(?:ction)\\b))'
-    'endCaptures':
-      '1':
-        'name': 'punctuation.separator.function.type-constraint.ocaml'
-      '2':
-        'name': 'storage.type.ocaml'
-      '3':
-        'name': 'keyword.operator.ocaml'
-      '4':
-        'name': 'keyword.operator.ocaml'
-    'name': 'meta.function.ocaml'
+    'comment': 'Scoped declaration'
+    'begin': '(?=\\blet\\b)'
+    'end': '(?<=in)|(?=type|end|exception|external)'
+    'name': 'meta.let_binding.ocaml'
     'patterns': [
       {
-        'include': '#variables'
+        'comment': 'Match everything between "let|and" and "=".
+                    Highlights the first word or infix function name after the
+                    "let|and" or an optional "rec" as function name.
+                    The closing "=" may be preceded by a function type definition.'
+        'begin': '\\b(let|and)\\s+(?!\\(\\*)(rec\\b)?\\s*(?:(\\(\\))|([a-z_][a-zA-Z0-9_\']*|\\([^)]+\\)))'
+        'beginCaptures':
+          '1':
+            'name': 'keyword.other.function-definition.ocaml'
+          '2':
+            'name': 'keyword.other.function-definition.ocaml'
+          '3':
+            'name': 'constant.language.unit.ocaml'
+          '4':
+            'name': 'entity.name.function.ocaml'
+          '5':
+            'name': 'entity.name.function.ocaml'
+        'end': '(?:(:)\\s*([^=]+))?(?==)'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.separator.function.type-constraint.ocaml'
+          '2':
+            'name': 'storage.type.ocaml'
+        'name': 'meta.function.ocaml'
+        'patterns': [
+          {
+            'include': '#variables'
+          }
+        ]
+      }
+      {
+        'comment': 'Matches everything between the `=` and the `in|and`'
+        'begin': '='
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.separator.assignment.ocaml'
+        'end': '\\b(?:(in)|(?=and|type|end|exception|external))\\b'
+        'endCaptures':
+          '1':
+            'name': 'keyword.other.in.ocaml'
+        'patterns': [
+          {'include': '$self'}
+        ]
       }
     ]
   }
@@ -106,9 +98,12 @@
   }
   {
     'begin': '^\\s*(?=type\\s)'
-    'end': '\\b(?=let|end|val)|^\\s*$'
+    'end': '\\b(?=let|end|val|exception|external|module)'
     'name': 'meta.type-definition-group.ocaml'
     'patterns': [
+      {
+        'include': '#comments'
+      }
       {
         'begin': '\\b(type|and)\\s+([^=]*)(=)?'
         'beginCaptures':
@@ -118,7 +113,7 @@
             'name': 'storage.type.ocaml'
           '3':
             'name': 'punctuation.separator.type-definition.ocaml'
-        'end': '(?=\\b(type|and|let|end|val)\\b)|(?=^\\s*$)'
+        'end': '(?=\\b(type|and|let|end|val|exception|external|module)\\b)|(?=^\\s*$)'
         'name': 'meta.type-definition.ocaml'
         'patterns': [
           {
@@ -255,7 +250,7 @@
     ]
   }
   {
-    'begin': '\\b(object)\\s*(?:(\\()(_?[a-z]+)(\\)))?\\s*$'
+    'begin': '\\b(object)\\s*(?:(\\()(_?[a-z]+)(\\)))?\\s*'
     'beginCaptures':
       '1':
         'name': 'keyword.other.object-definition.ocaml'
@@ -274,7 +269,7 @@
     'name': 'meta.object.ocaml'
     'patterns': [
       {
-        'begin': '\\b(method)\\s+(virtual\\s+)?(private\\s+)?([a-z_][a-zA-Z0-9\'_]*)'
+        'begin': '\\b(method!?)\\s+(virtual\\s+)?(private\\s+)?([a-z_][a-zA-Z0-9\'_]*)'
         'beginCaptures':
           '1':
             'name': 'keyword.other.method-definition.ocaml'
@@ -1193,7 +1188,7 @@
         ]
       }
       {
-        'begin': '(\\()(?=(~[a-z][a-zA-Z0-9_]*:|("(\\\\"|[^"])*")|[^\\(\\)~"])+(?<!:)(:>|:(?![:=])))'
+        'begin': '(\\()(?=(~[a-z][a-zA-Z0-9_]*:|("(\\\\"|[^"])*")|[^\\*\\(\\)~"])+(?<!:)(:>|:(?![:=])))'
         'beginCaptures':
           '1':
             'name': 'punctuation.section.type-constraint.ocaml'

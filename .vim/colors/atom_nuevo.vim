@@ -35,7 +35,7 @@ hi LineNr cterm=NONE ctermfg=245 ctermbg=233 gui=NONE guifg=#8a8a8a guibg=#12121
 hi Label cterm=NONE ctermfg=75 ctermbg=NONE gui=NONE guibg=NONE guifg=NONE
 hi Macro cterm=NONE ctermfg=81 ctermbg=NONE gui=NONE guifg=#5fd7ff guibg=NONE
 hi MatchParen cterm=NONE ctermfg=232 ctermbg=39 gui=NONE guifg=#0a0a0a guibg=#00a6ff
-hi ModeMsg cterm=NONE ctermfg=46 ctermbg=NONE gui=NONE guifg=#00ff00 guibg=NONE
+hi ModeMsg cterm=bold ctermfg=46 ctermbg=NONE gui=bold guifg=#00ff00 guibg=NONE
 hi MoreMsg cterm=NONE ctermfg=NONE ctermbg=7 gui=NONE guifg=NONE guibg=NONE
 hi NonText cterm=NONE ctermfg=241 ctermbg=NONE gui=NONE guifg=#616161 guibg=NONE
 hi Normal cterm=NONE ctermfg=255 ctermbg=NONE gui=NONE guifg=#e8e8e8 guibg=#0a0a0a
@@ -46,7 +46,7 @@ hi PmenuSbar cterm=NONE ctermfg=NONE ctermbg=235 gui=NONE guifg=NONE guibg=#2626
 hi PmenuSel cterm=NONE ctermfg=NONE ctermbg=236 gui=NONE guifg=NONE guibg=#333333
 hi PmenuThumb cterm=NONE ctermfg=NONE ctermbg=238 gui=NONE guifg=NONE guibg=#424242
 hi PreCondit cterm=NONE ctermbg=NONE ctermfg=48 gui=NONE guibg=NONE guifg=#00ff87
-hi Question cterm=NONE ctermfg=NONE ctermbg=7 gui=NONE guifg=NONE guibg=NONE
+hi Question cterm=bold ctermfg=48 ctermbg=NONE gui=bold guifg=#00ff87 guibg=NONE
 hi Repeat cterm=NONE ctermfg=75 ctermbg=NONE gui=NONE guifg=#5fafff guibg=NONE
 hi Search cterm=NONE ctermfg=238 ctermbg=47 gui=NONE guifg=#424242 guibg=#00ff5f
 hi SignColumn cterm=NONE ctermfg=241 ctermbg=NONE gui=NONE guifg=#616161 guibg=NONE
