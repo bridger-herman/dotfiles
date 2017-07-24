@@ -2,40 +2,40 @@
   "_args": [
     [
       {
-        "raw": "/tmp/d-11759-22204-ow3c3s/package.tgz",
+        "raw": "/tmp/d-117614-10860-iffe16/package.tgz",
         "scope": null,
         "escapedName": null,
         "name": null,
-        "rawSpec": "/tmp/d-11759-22204-ow3c3s/package.tgz",
-        "spec": "/tmp/d-11759-22204-ow3c3s/package.tgz",
+        "rawSpec": "/tmp/d-117614-10860-iffe16/package.tgz",
+        "spec": "/tmp/d-117614-10860-iffe16/package.tgz",
         "type": "local"
       },
-      "/tmp/apm-install-dir-11759-22204-6nkpi7"
+      "/tmp/apm-install-dir-117614-10860-1dbrteo"
     ]
   ],
-  "_from": "../d-11759-22204-ow3c3s/package.tgz",
-  "_id": "vim-mode-plus@0.93.0",
+  "_from": "../d-117614-10860-iffe16/package.tgz",
+  "_id": "vim-mode-plus@0.94.0",
   "_inCache": true,
   "_installable": true,
   "_location": "/vim-mode-plus",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "/tmp/d-11759-22204-ow3c3s/package.tgz",
+    "raw": "/tmp/d-117614-10860-iffe16/package.tgz",
     "scope": null,
     "escapedName": null,
     "name": null,
-    "rawSpec": "/tmp/d-11759-22204-ow3c3s/package.tgz",
-    "spec": "/tmp/d-11759-22204-ow3c3s/package.tgz",
+    "rawSpec": "/tmp/d-117614-10860-iffe16/package.tgz",
+    "spec": "/tmp/d-117614-10860-iffe16/package.tgz",
     "type": "local"
   },
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "file:../d-11759-22204-ow3c3s/package.tgz",
-  "_shasum": "e36af107c7f5da24f7fb74fc03c48e99e23485eb",
+  "_resolved": "file:../d-117614-10860-iffe16/package.tgz",
+  "_shasum": "87da3d8eefe944ad056cddb259ba23eb887578c6",
   "_shrinkwrap": null,
-  "_spec": "/tmp/d-11759-22204-ow3c3s/package.tgz",
-  "_where": "/tmp/apm-install-dir-11759-22204-6nkpi7",
+  "_spec": "/tmp/d-117614-10860-iffe16/package.tgz",
+  "_where": "/tmp/apm-install-dir-117614-10860-1dbrteo",
   "bugs": {
     "url": "https://github.com/t9md/atom-vim-mode-plus/issues"
   },
@@ -92,5 +92,5 @@
     "test": "apm test",
     "watch": "fswatch -0 spec lib | xargs -0 -n1 -I{} apm test"
   },
-  "version": "0.93.0"
+  "version": "0.94.0"
 }

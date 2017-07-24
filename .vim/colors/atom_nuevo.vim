@@ -24,7 +24,7 @@ hi EasyMotionTarget ctermbg=none ctermfg=46 cterm=bold gui=NONE guifg=#00ff00 gu
 hi EasyMotionShade  ctermbg=none ctermfg=245 cterm=bold gui=NONE guifg=#8a8a8a guibg=NONE
 hi Error cterm=NONE ctermfg=NONE ctermbg=52 gui=NONE guifg=NONE guibg=#710e0e
 hi ErrorMsg cterm=NONE ctermfg=NONE ctermbg=233 gui=NONE guifg=NONE guibg=#260808
-hi Exception cterm=NONE ctermfg=NONE ctermbg=7 gui=NONE guifg=NONE guibg=NONE
+hi Exception cterm=NONE ctermfg=75 ctermbg=NONE gui=NONE guifg=#5fafff guibg=NONE
 hi FoldColumn cterm=NONE ctermfg=241 ctermbg=NONE gui=NONE guifg=#616161 guibg=NONE
 hi Folded cterm=NONE ctermfg=242 ctermbg=NONE gui=NONE guifg=#707070 guibg=NONE
 hi Function cterm=NONE ctermfg=223 ctermbg=NONE gui=NONE guifg=#ffd2a7 guibg=NONE

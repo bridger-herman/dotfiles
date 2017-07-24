@@ -1,0 +1,5 @@
+pane	0	0	:~	1	:*	0	:/home/bridger	1	zsh	:
+pane	olpd	0	:~	1	:*	0	:/home/bridger	1	zsh	:
+window	0	0	1	:*	b6be,190x52,0,0,1
+window	olpd	0	1	:*	b6c0,190x52,0,0,3
+state	olpd	0

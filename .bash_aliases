@@ -17,7 +17,9 @@ alias sssh='/home/bridger/GitHub/projects/./ssh.sh'
 alias finder='/home/bridger/GitHub/projects/./finder.py'
 
 # Blender
-alias blender='/home/bridger/Programs/blender-2.77a-linux-glibc211-x86_64/./blender'
+if [ -f ~/Programs/blender-2.78c-linux-glibc219-x86_64/blender ]; then
+  alias blender='~/Programs/blender-2.78c-linux-glibc219-x86_64/blender'
+fi
 
 # vim
 alias v='/usr/bin/vim'
