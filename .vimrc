@@ -67,6 +67,8 @@ set autoindent
 set splitright
 set splitbelow
 
+set textwidth=78
+
 " ---------- Plugin Settings ---------- 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -84,4 +86,4 @@ let g:ycm_filetype_blacklist = {}
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " Avoid 'still no compile flags' error TODO doesn't work
-let g:ycm_global_ycm_extra_conf = '/home/bridger/.vim/bundle/youcompleteme/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py' 
+" let g:ycm_global_ycm_extra_conf = '/home/bridger/.vim/bundle/youcompleteme/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py' 
