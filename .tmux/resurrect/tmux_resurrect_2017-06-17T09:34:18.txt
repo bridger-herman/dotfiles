@@ -1,5 +1,0 @@
-pane	olpd	0	:..PD/Writings/5	1	:*Z	0	:/home/bridger/Dropbox/Junior/OLPD/Writings/5	0	vim	:/usr/bin/vim 5.tex
-pane	olpd	0	:..PD/Writings/5	1	:*Z	1	:/home/bridger/Dropbox/Junior/OLPD/Writings/5	1	zsh	:evince 5.pdf
-evince ../1/1.pdf
-window	olpd	0	1	:*Z	cd9c,190x51,0,0[190x40,0,0,0,190x10,0,41,1]
-state	olpd	

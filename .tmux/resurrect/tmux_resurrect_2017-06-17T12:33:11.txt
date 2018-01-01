@@ -1,6 +1,0 @@
-pane	0	0	:~	1	:*	0	:/home/bridger	1	zsh	:
-pane	olpd	0	:v	1	:*	0	:/home/bridger/Dropbox/Junior/OLPD/Writings/5	1	vim	:/usr/bin/vim 5.tex
-pane	olpd	0	:v	1	:*	1	:/home/bridger/Dropbox/Junior/OLPD/Writings/5	0	zsh	:
-window	0	0	1	:*	b6bd,190x52,0,0,0
-window	olpd	0	1	:*	07a1,190x52,0,0[190x35,0,0,1,190x16,0,36,2]
-state	olpd	0

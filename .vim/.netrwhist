@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/bridger/1133/graid/lib/tools'
-let g:netrw_dirhist_2='/home/bridger/1133/graid'
-let g:netrw_dirhist_3='/home/bridger/1133/graid/scratch'
-let g:netrw_dirhist_4='/home/bridger/.vim'
-let g:netrw_dirhist_5='/home/bridger/1133/graid'
-let g:netrw_dirhist_6='/home/bridger/Dropbox/Junior/373/OpenGL/src'
