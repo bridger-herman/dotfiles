@@ -20,3 +20,10 @@
 	; prompt = false
 [alias]
 	d = difftool
+[advice]
+	pushNonFastForward = false
+	statusHints        = false
+	commitBeforeMerge  = false
+	resolveConflict    = false
+	implicitIdentity   = false
+	detachedHead       = false
