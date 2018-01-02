@@ -4,25 +4,40 @@
 # Default link location is ~/<link path>
 
 import os
+import shutil
 from fnmatch import fnmatch
 from pathlib import Path
 
-DEFAULT_SRC = Path.home()
-IGNORE = [__file__, '.*.swp']
+DEFAULT_DST= Path.home()
+IGNORE = [__file__, '.*.swp', '.git', '.gitignore', '.gitmodules']
 
 def make_symlink(src, dst):
-    try:
-        print('Making link {} -> {}'.format(src, dst))
-        os.symlink(str(src), str(dst))
-    except:
-        print('  Link creation failed')
+    done = False
+    print('Making link {} -> {}'.format(dst, src))
+    while not done:
+        try:
+            os.symlink(str(src), str(dst))
+            done = True
+        except FileExistsError:
+            ovw = input('  File exists. Overwrite? (y/n)').lower().strip() \
+                    == 'y'
+            if ovw:
+                try:
+                    os.remove(dst)
+                except IsADirectoryError:
+                    shutil.rmtree(dst)
+            else:
+                done = True
+        except Exception as e:
+            print('  Link creation failed')
+            print(e)
 
 def main():
     fnames = [fname for fname in os.listdir() if not any([fnmatch(fname, p)
-        for p in IGNORE])]
+            for p in IGNORE])]
     for fname in fnames:
-        dst = Path(fname).resolve(strict = True)
-        src = DEFAULT_SRC.joinpath(fname)
+        src = Path(fname).resolve(strict = True)
+        dst = DEFAULT_DST.joinpath(fname)
         make_symlink(src, dst)
 
 if __name__ == '__main__':
