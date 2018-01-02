@@ -1,0 +1,22 @@
+[user]
+	email = scooteeroo@gmail.com
+	name = Bridger Herman
+[push]
+	default = simple
+[credential]
+	helper = cache --timeout=3600
+[core]
+	editor = vim
+	eol = lf
+	autocrlf = input
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[diff]
+	tool = vimdiff
+; [difftool]
+	; prompt = false
+; [mergetool]
+	; prompt = false
+[alias]
+	d = difftool
