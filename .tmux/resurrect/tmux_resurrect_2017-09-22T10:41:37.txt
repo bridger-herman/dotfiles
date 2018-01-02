@@ -1,0 +1,5 @@
+pane	0	0	:..repo-herma582	1	:*	0	:/home/bridger/1133/Grading/grading-scripts	0	zsh	:
+pane	0	0	:..repo-herma582	1	:*	1	:/home/bridger/1133/Grading/grading-scripts	0	zsh	:
+pane	0	0	:..repo-herma582	1	:*	2	:/home/bridger/1133/Grading/repo-herma582	1	zsh	:
+window	0	0	1	:*	4038,190x52,0,0{95x52,0,0,0,94x52,96,0[94x26,96,0,1,94x25,96,27,2]}
+state	0	

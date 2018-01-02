@@ -1,0 +1,4 @@
+pane	0	0	:..008/exercise2	1	:*	0	:/home/bridger/1133/Grading/grading-scripts	1	zsh	:
+pane	0	0	:..008/exercise2	1	:*	1	:/home/bridger/1133/Grading/repo-oderm008/exercise2	0	zsh	:
+window	0	0	1	:*	9a6e,190x52,0,0{94x52,0,0,1,95x52,95,0,2}
+state	0	
