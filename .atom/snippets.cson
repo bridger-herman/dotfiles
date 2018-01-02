@@ -1,0 +1,37 @@
+'.source.c':
+  'Multiline Comment':
+    'prefix': 'mcm'
+    'body': """
+/*
+ *
+ */
+"""
+  'Debug':
+    'prefix': 'db'
+    'body': """
+#ifdef DEBUG
+
+#endif
+"""
+
+'.source.cpp':
+  'Multiline Comment':
+    'prefix': 'mcm'
+    'body': """
+/*
+ *
+ */
+"""
+  'Vector':
+    'prefix': 'vec'
+    'body': """
+std::vector<${1:type}> ${2:continue}
+"""
+
+'.text.tex.latex':
+  'Typewriter Text':
+    'prefix': 'tt'
+    'body': '\\\\texttt{${1:text}}'
+  'Italics':
+    'prefix': 'em'
+    'body': '\\\\emph{${1:text}}'
