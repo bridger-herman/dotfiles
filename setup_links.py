@@ -22,10 +22,10 @@ def make_symlink(src, dst):
             ovw = input('  File exists. Overwrite? (y/n)').lower().strip() \
                     == 'y'
             if ovw:
-                try:
-                    os.remove(dst)
-                except IsADirectoryError:
+                if dst.is_dir():
                     shutil.rmtree(dst)
+                else:
+                    os.remove(dst)
             else:
                 done = True
         except Exception as e:
