@@ -23,9 +23,9 @@ def make_symlink(src, dst):
                     == 'y'
             if ovw:
                 if dst.is_dir():
-                    shutil.rmtree(dst)
+                    shutil.rmtree(str(dst))
                 else:
-                    os.remove(dst)
+                    os.remove(str(dst))
             else:
                 done = True
         except Exception as e:
@@ -36,7 +36,8 @@ def main():
     fnames = [fname for fname in os.listdir() if not any([fnmatch(fname, p)
             for p in IGNORE])]
     for fname in fnames:
-        src = Path(fname).resolve(strict = True)
+        #  src = Path(fname).resolve(strict = True)
+        src = Path(fname).resolve()
         dst = DEFAULT_DST.joinpath(fname)
         make_symlink(src, dst)
 
