@@ -12,7 +12,7 @@
   editor:
     autoIndentOnPaste: false
     fontFamily: "Ubuntu Mono derivative Powerline"
-    fontSize: 20
+    fontSize: 16
     invisibles: {}
     scrollPastEnd: true
     showInvisibles: true
