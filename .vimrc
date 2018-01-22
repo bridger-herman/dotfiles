@@ -33,6 +33,10 @@ autocmd FileType tex setlocal spell spelllang=en
 " ImageJ (Javascript-like, hack for now)
 au BufReadPost *.ijm set syntax=java
 
+" GLSL syntax
+au BufReadPost *.vert set syntax=glsl
+au BufReadPost *.frag set syntax=glsl
+
 set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
 ",space:·
 set list
