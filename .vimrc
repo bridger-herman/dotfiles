@@ -91,5 +91,8 @@ let g:ycm_filetype_blacklist = {}
 " Close scratch window
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
+" gitignore for ctrlp
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
 " Avoid 'still no compile flags' error TODO doesn't work
 " let g:ycm_global_ycm_extra_conf = '/home/bridger/.vim/bundle/youcompleteme/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py' 
