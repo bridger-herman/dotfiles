@@ -22,6 +22,7 @@ set softtabstop=2 " Number of spaces in tab when editing
 set expandtab " Spaces instead of tabs
 
 autocmd FileType python setlocal softtabstop=4 shiftwidth=4 " Python specific settings
+autocmd FileType matlab setlocal softtabstop=4 shiftwidth=4 " MATLAB specific settings
 
 au BufReadPost *.make set syntax=make
 autocmd FileType make setlocal noexpandtab " MakeFile specific settings
@@ -93,6 +94,9 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " gitignore for ctrlp
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" avoid vimtex error message
+let g:vimtex_compiler_latexmk = {'callback' : 0}
 
 " Avoid 'still no compile flags' error TODO doesn't work
 " let g:ycm_global_ycm_extra_conf = '/home/bridger/.vim/bundle/youcompleteme/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py' 
