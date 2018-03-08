@@ -98,5 +98,8 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 " avoid vimtex error message
 let g:vimtex_compiler_latexmk = {'callback' : 0}
 
+" Always autosave workspace
+let g:workspace_autosave_always = 1
+
 " Avoid 'still no compile flags' error TODO doesn't work
 " let g:ycm_global_ycm_extra_conf = '/home/bridger/.vim/bundle/youcompleteme/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py' 
