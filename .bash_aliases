@@ -7,6 +7,9 @@ alias mk_notes='~/GitHub/projects/mk_notes.sh'
 # Recursive text finder
 alias finder='~/GitHub/projects/./finder.py'
 
+# TODO lister
+alias todos='~/GitHub/projects/todos.py'
+
 # Blender
 if [ -f ~/Programs/blender-2.78c-linux-glibc219-x86_64/blender ]; then
   alias blender='~/Programs/blender-2.78c-linux-glibc219-x86_64/blender'
