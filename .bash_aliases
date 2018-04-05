@@ -20,3 +20,6 @@ alias v='/usr/bin/vim'
 
 # LaTeX making
 alias texmake='make -f ~/GitHub/projects/latex.make $@'
+
+# Steam Locomotive
+alias sl='~/GitHub/sl/sl'
