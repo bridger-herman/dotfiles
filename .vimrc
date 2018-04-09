@@ -38,7 +38,7 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
 ",space:·
 set list
 
-" ---------- Keyboard shortcut remaps ---------- 
+" ---------- Keyboard shortcut remaps ----------
 " Move to beginning/end of line
 nnoremap B ^
 nnoremap E $
@@ -65,7 +65,7 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 let mapleader = ","
 
-" ---------- Miscellaneous Settings ---------- 
+" ---------- Miscellaneous Settings ----------
 
 " Basic autoindentation
 set autoindent
@@ -76,7 +76,7 @@ set splitbelow
 
 set textwidth=78
 
-" ---------- Plugin Settings ---------- 
+" ---------- Plugin Settings ----------
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
@@ -102,4 +102,9 @@ let g:vimtex_compiler_latexmk = {'callback' : 0}
 let g:workspace_autosave_always = 1
 
 " Avoid 'still no compile flags' error TODO doesn't work
-" let g:ycm_global_ycm_extra_conf = '/home/bridger/.vim/bundle/youcompleteme/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py' 
+" let g:ycm_global_ycm_extra_conf = '/home/bridger/.vim/bundle/youcompleteme/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+"
+"
+" External commands
+set exrc
+set secure
