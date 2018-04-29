@@ -42,12 +42,8 @@ set list
 " Move to beginning/end of line
 nnoremap B ^
 nnoremap E $
-nnoremap $ <nop>
-nnoremap ^ <nop>
 vnoremap B ^
 vnoremap E $
-vnoremap $ <nop>
-vnoremap ^ <nop>
 
 " Atom/gedit shortcuts I'm used to
 nmap <c-d> dd
@@ -98,12 +94,12 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 " avoid vimtex error message
 let g:vimtex_compiler_latexmk = {'callback' : 0}
 
-" Always autosave workspace
+" vim-workspace tweaks
 let g:workspace_autosave_always = 1
+let g:workspace_session_disable_on_args = 1
 
 " Avoid 'still no compile flags' error TODO doesn't work
 " let g:ycm_global_ycm_extra_conf = '/home/bridger/.vim/bundle/youcompleteme/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-"
 "
 " External commands
 set exrc
