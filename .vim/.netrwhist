@@ -1,10 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/home/bridger/1133/1133TA/labs/lab4'
-let g:netrw_dirhist_2='/home/bridger/1133/1133TA/labs/lab10'
-let g:netrw_dirhist_3='/home/bridger/1133/1133TA/labs'
-let g:netrw_dirhist_4='/home/bridger/1133/1133TA/labs/lab5'
-let g:netrw_dirhist_5='/home/bridger/Dropbox/Programming/php'
-let g:netrw_dirhist_6='/Users/bridger/GitHub/config/.vim/bundle/ClosePairs/plugin'
-let g:netrw_dirhist_7='/home/bridger/5611/5611-hw1/src'
-let g:netrw_dirhist_8='/home/bridger/5611/5611-hw3/src'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/home/bridger/GitHub/GlyphPhys/user_study/src/__pycache__'
+let g:netrw_dirhist_2='/home/bridger/GitHub/GlyphPhys/paper'
+let g:netrw_dirhist_3='/home/bridger/5611/SoundProp'
+let g:netrw_dirhist_4='/etc/X11/xinit/xinitrc.d'
