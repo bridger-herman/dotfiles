@@ -78,6 +78,9 @@ let g:NERDSpaceDelims = 1
 
 " Disable Markdown folding
 " let g:vim_markdown_folding_disabled = 1
+"
+" Airline Powerline fonts
+let g:airline_powerline_fonts = 1
 
 " Disable callbacks for now
 let g:vimtex_latexmk_callback = 0
