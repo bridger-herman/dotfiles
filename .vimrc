@@ -73,7 +73,8 @@ set textwidth=78
 let g:NERDSpaceDelims = 1
 
 " Airline Powerline fonts
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
+
 " Disable callbacks for now
 let g:vimtex_latexmk_callback = 0
 
