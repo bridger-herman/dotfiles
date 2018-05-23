@@ -32,3 +32,7 @@ alias texmake='make -f ~/GitHub/projects/latex.make $@'
 
 # Steam Locomotive
 alias sl='~/GitHub/sl/sl'
+
+# Julia
+alias julia='/Applications/Julia-0.6.app/Contents/Resources/julia/bin/julia'
+

@@ -42,20 +42,12 @@ set list
 " Move to beginning/end of line
 nnoremap B ^
 nnoremap E $
-nnoremap $ <nop>
-nnoremap ^ <nop>
 vnoremap B ^
 vnoremap E $
-vnoremap $ <nop>
-vnoremap ^ <nop>
 
 " Atom/gedit shortcuts I'm used to
 nmap <c-d> dd
-nnoremap <CR> o
 nmap <c-a-q> gq
-
-" Insert a line but don't edit it
-nmap o o<Esc>
 
 " Escape in insert mode
 imap jk <Esc><Right>
@@ -80,9 +72,6 @@ set textwidth=78
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
-" Disable Markdown folding
-" let g:vim_markdown_folding_disabled = 1
-
 " Disable callbacks for now
 let g:vimtex_latexmk_callback = 0
 
@@ -100,6 +89,3 @@ let g:vimtex_compiler_latexmk = {'callback' : 0}
 
 " Always autosave workspace
 let g:workspace_autosave_always = 1
-
-" Avoid 'still no compile flags' error TODO doesn't work
-" let g:ycm_global_ycm_extra_conf = '/home/bridger/.vim/bundle/youcompleteme/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py' 
