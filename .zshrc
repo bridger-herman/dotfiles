@@ -102,4 +102,9 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+if [ -f $HOME/.cargo/env ]; then
+  source $HOME/.cargo/env
+fi
+
+
 DEFAULT_USER=$USERNAME

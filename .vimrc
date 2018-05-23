@@ -38,7 +38,7 @@ set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
 ",space:·
 set list
 
-" ---------- Keyboard shortcut remaps ---------- 
+" ---------- Keyboard shortcut remaps ----------
 " Move to beginning/end of line
 nnoremap B ^
 nnoremap E $
@@ -57,7 +57,7 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 let mapleader = ","
 
-" ---------- Miscellaneous Settings ---------- 
+" ---------- Miscellaneous Settings ----------
 
 " Basic autoindentation
 set autoindent
@@ -68,10 +68,12 @@ set splitbelow
 
 set textwidth=78
 
-" ---------- Plugin Settings ---------- 
+" ---------- Plugin Settings ----------
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
+" Airline Powerline fonts
+let g:airline_powerline_fonts = 1
 " Disable callbacks for now
 let g:vimtex_latexmk_callback = 0
 
@@ -87,5 +89,5 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 " avoid vimtex error message
 let g:vimtex_compiler_latexmk = {'callback' : 0}
 
-" Always autosave workspace
+" vim-workspace tweaks
 let g:workspace_autosave_always = 1
