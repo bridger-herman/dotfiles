@@ -11,8 +11,8 @@
     ]
   editor:
     autoIndentOnPaste: false
-    fontFamily: "Ubuntu Mono derivative Powerline"
-    fontSize: 16
+    fontFamily: "Roboto Mono for Powerline"
+    fontSize: 17
     invisibles: {}
     scrollPastEnd: true
     showInvisibles: true
