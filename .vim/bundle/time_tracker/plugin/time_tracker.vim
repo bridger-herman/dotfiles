@@ -1,25 +1,33 @@
-let g:config_file = '.time_tracker'
+let g:time_tracker_config_file = '.time_tracker'
 
 
 function! g:TimeTrackerClockIn()
-  let rows = readfile(g:config_file)
+  if !filereadable(g:time_tracker_config_file)
+    return
+  endif
+  let rows = readfile(g:time_tracker_config_file)
   let rows = rows + [localtime()]
-  if writefile(rows, g:config_file)
+  if writefile(rows, g:time_tracker_config_file)
   endif
 endfunction
 
 function! g:TimeTrackerClockOut()
-  let rows = readfile(g:config_file)
+  if !filereadable(g:time_tracker_config_file)
+    return
+  endif
+  let rows = readfile(g:time_tracker_config_file)
   let rows = rows + [localtime(), ""]
-  if writefile(rows, g:config_file)
+  if writefile(rows, g:time_tracker_config_file)
   endif
 endfunction
 
 function! g:TimeTrackerStatus()
-  let rows = readfile(g:config_file)
+  let rows = readfile(g:time_tracker_config_file)
+
   let sum = 0
   let previous_1 = 0
   let previous_2 = 0
+
   for row in rows
     if row == ''
       let sum += previous_1 - previous_2
@@ -30,7 +38,17 @@ function! g:TimeTrackerStatus()
       let previous_1 = row
     endif
   endfor
-  echom 'Working for ' . sum / 60 . ' minutes and ' . sum % 60 . ' seconds'
+
+  if previous_2 == 0
+    let sum += localtime() - previous_1
+  endif
+
+  let hours = sum / 3600
+  let leftover_seconds = sum % 3600
+  let minutes = leftover_seconds / 60
+  let seconds = leftover_seconds % 60
+
+  echom printf('Working for %d:%02d:%02d', hours, minutes, seconds)
 endfunction
 
 autocmd VimEnter * call TimeTrackerClockIn()
