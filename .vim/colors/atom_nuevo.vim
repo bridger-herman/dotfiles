@@ -52,7 +52,7 @@ hi Search cterm=NONE ctermfg=238 ctermbg=47 gui=NONE guifg=#424242 guibg=#00ff5f
 hi SignColumn cterm=NONE ctermfg=241 ctermbg=NONE gui=NONE guifg=#616161 guibg=NONE
 hi Special cterm=NONE ctermfg=147 ctermbg=NONE gui=NONE guifg=#b4b3ff guibg=NONE
 hi SpecialChar cterm=NONE ctermfg=114 ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
-hi SpecialComment cterm=NONE ctermfg=NONE ctermbg=7 gui=NONE guifg=NONE guibg=NONE
+hi SpecialComment cterm=NONE ctermfg=247 ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
 hi SpecialKey cterm=NONE ctermfg=241 ctermbg=NONE gui=NONE guifg=#616161 guibg=NONE
 hi SpellBad cterm=NONE ctermfg=fg ctermbg=52 gui=undercurl guisp=NONE guifg=NONE guibg=#260808
 hi SpellCap cterm=NONE ctermfg=fg ctermbg=23 gui=undercurl guisp=NONE guifg=NONE guibg=NONE
@@ -72,7 +72,7 @@ hi Title cterm=NONE ctermfg=255 ctermbg=NONE gui=NONE guifg=#ededed guibg=NONE
 hi Todo cterm=bold ctermfg=185 ctermbg=NONE gui=bold guifg=#cec764 guibg=NONE
 hi Type cterm=NONE ctermfg=186 ctermbg=NONE gui=NONE guifg=#e0d97b guibg=NONE
 hi Typedef cterm=NONE ctermfg=NONE ctermbg=7 gui=NONE guifg=NONE guibg=NONE
-hi Underlined cterm=NONE ctermfg=NONE ctermbg=7 gui=NONE guifg=NONE guibg=NONE
+hi Underlined cterm=underline ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
 hi VertSplit cterm=NONE ctermfg=235 ctermbg=235 gui=NONE guifg=#262626 guibg=#262626
 hi Visual cterm=NONE ctermfg=NONE ctermbg=240 gui=NONE guifg=NONE guibg=#585858
 hi VisualNOS cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
