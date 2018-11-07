@@ -20,8 +20,8 @@ alias mr='/usr/bin/env make -j run'
 alias md='/usr/bin/env make -j db'
 
 # Blender
-if [ -f ~/Programs/blender-2.78c-linux-glibc219-x86_64/blender ]; then
-  alias blender='~/Programs/blender-2.78c-linux-glibc219-x86_64/blender'
+if [ -f ~/Programs/blender-2.79b-linux-glibc219-x86_64/blender ]; then
+  alias blender='~/Programs/blender-2.79b-linux-glibc219-x86_64/blender'
 fi
 
 # vim
