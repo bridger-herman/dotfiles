@@ -27,7 +27,10 @@ autocmd FileType matlab setlocal softtabstop=4 shiftwidth=4 " MATLAB specific se
 au BufReadPost *.make set syntax=make
 autocmd FileType make setlocal noexpandtab " MakeFile specific settings
 
+autocmd FileType rust setlocal textwidth=80 " Rust-specific settings
+
 " Spell checker
+autocmd FileType html setlocal spell spelllang=en
 autocmd FileType markdown setlocal spell spelllang=en
 autocmd FileType tex setlocal spell spelllang=en
 
