@@ -13,7 +13,7 @@ hi CursorColumn cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE guibg=#
 hi CursorLine cterm=NONE ctermfg=NONE ctermbg=NONE gui=NONE guifg=NONE guibg=#0a0a0a
 hi CursorLineNr cterm=NONE ctermfg=255 ctermbg=236 gui=NONE guifg=#f0f0f0 guibg=#2e2e2e
 hi Debug cterm=NONE ctermfg=NONE ctermbg=7 gui=NONE guifg=NONE guibg=NONE
-hi Define cterm=NONE ctermfg=NONE ctermbg=81 gui=NONE guifg=#5fd7ff guibg=NONE
+hi Define cterm=NONE ctermfg=82 ctermbg=NONE gui=NONE guifg=#5fd7ff guibg=NONE
 hi Delimiter cterm=NONE ctermfg=253 ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
 hi DiffAdd cterm=NONE ctermfg=NONE ctermbg=234 gui=NONE guifg=NONE guibg=#082608
 hi DiffChange cterm=NONE ctermfg=NONE ctermbg=234 gui=NONE guifg=NONE guibg=#1a1a1a
