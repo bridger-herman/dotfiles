@@ -52,3 +52,6 @@
 [submodule ".vim/bundle/vim-vue"]
 	path = .vim/bundle/vim-vue
 	url = https://github.com/posva/vim-vue
+[submodule ".vim/bundle/vim-time-tracker"]
+	path = .vim/bundle/vim-time-tracker
+	url = git@github.com:bridger-herman/vim-time-tracker.git
