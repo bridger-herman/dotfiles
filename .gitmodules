@@ -57,4 +57,4 @@
 	url = git@github.com:bridger-herman/vim-time-tracker.git
 [submodule ".vim/bundle/vim-session-manager"]
 	path = .vim/bundle/vim-session-manager
-	url = git@github.com:bridger-herman/vim-session-manager.git
+	url = git@github.com:LiamTyler/vim-session-manager.git
