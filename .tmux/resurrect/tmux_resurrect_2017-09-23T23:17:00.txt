@@ -1,4 +1,0 @@
-pane	0	0	:..ading-scripts	1	:*M	0	:/home/bridger/1133/Grading/grading-scripts	0	zsh	:
-pane	0	0	:..ading-scripts	1	:*M	1	:/home/bridger/1133/Grading/grading-scripts	1	zsh	:
-window	0	0	1	:*M	9a6e,190x52,0,0{94x52,0,0,1,95x52,95,0,2}
-state	0	
