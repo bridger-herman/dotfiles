@@ -23,7 +23,7 @@ def make_symlink(src, dst):
                     == 'y'
             if ovw:
                 if dst.is_dir():
-                    shutil.rmtree(str(dst)
+                    shutil.rmtree(str(dst))
                 else:
                     os.remove(str(dst))
             else:
