@@ -9,7 +9,7 @@ from fnmatch import fnmatch
 from pathlib import Path
 
 DEFAULT_DST= Path.home()
-IGNORE = [__file__, '.*.swp', '.git', '.gitignore', '.gitmodules']
+IGNORE = [__file__, '.*.swp', '.git', '.gitignore', '.gitmodules', '.config']
 
 def make_symlink(src, dst):
     done = False
