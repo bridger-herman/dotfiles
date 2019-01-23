@@ -9,7 +9,8 @@ from fnmatch import fnmatch
 from pathlib import Path
 
 DEFAULT_DST= Path.home()
-IGNORE = [__file__, '.*.swp', '.git', '.gitignore', '.gitmodules', '.config']
+IGNORE = [__file__, '.*.swp', '.git', '.gitignore', '.gitmodules']
+CONFIG_DIR = '.config'
 
 def make_symlink(src, dst):
     done = False
@@ -34,11 +35,20 @@ def make_symlink(src, dst):
 
 def main():
     fnames = [fname for fname in os.listdir() if not any([fnmatch(fname, p)
-            for p in IGNORE])]
+            for p in IGNORE]) and fname != CONFIG_DIR]
     for fname in fnames:
-        #src = Path(fname).resolve(strict = True)
         src = Path(fname).resolve()
         dst = DEFAULT_DST.joinpath(fname)
+        make_symlink(src, dst)
+
+    config_path = Path(CONFIG_DIR)
+    config_files = [config_path.joinpath(fname) for fname in
+            os.listdir(CONFIG_DIR) if not any([fnmatch(fname, p)
+            for p in IGNORE])]
+
+    for path in config_files:
+        src = path.resolve()
+        dst = DEFAULT_DST.joinpath(path)
         make_symlink(src, dst)
 
 if __name__ == '__main__':
