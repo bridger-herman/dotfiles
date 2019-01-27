@@ -9,47 +9,19 @@
 general {
   colors = true
   color_good = "#229900"
-  separator = "  |  "
+  separator = ""
   interval = 1
 }
 
-order += "wireless _first_"
-order += "ethernet _first_"
 order += "battery all"
-order += "cpu_usage"
 order += "tztime local"
-order += "volume master"
-
-wireless _first_ {
-  format_up = "W: (%quality at %essid) %ip"
-  format_down = "W: down"
-}
-
-ethernet _first_ {
-# if you use %speed, i3status requires root privileges
-  format_up = "E: %ip (%speed)"
-    format_down = "E: down"
-}
 
 battery all {
-  format = "%status %percentage"
-    status_chr = "⚡"
-    status_bat = "🔋"
-    status_unk = "?"
-    status_full = "☻ "
+  format = "%percentage 🔋"
     last_full_capacity = true
-}
-
-cpu_usage {
-  format = "%usage"
-  min_width = 40
-  align = right
+    integer_battery_capacity = true
 }
 
 tztime local {
-  format = "{%Y-%m-%d} [%H:%M:%S]"
-}
-
-volume master {
-  device = "default"
+  format = "  {%Y-%m-%d} [%H:%M:%S]  "
 }
