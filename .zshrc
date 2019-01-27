@@ -106,5 +106,7 @@ if [ -f $HOME/.cargo/env ]; then
   source $HOME/.cargo/env
 fi
 
+# Set keychain
+eval $(keychain --eval --quiet id_rsa_umn id_rsa)
 
 DEFAULT_USER=$USERNAME
