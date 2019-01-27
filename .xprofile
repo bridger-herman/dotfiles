@@ -1,0 +1,4 @@
+redshift &
+synapse -s &
+xset r rate 180 50 &
+/home/bridger/.screenlayout/home.sh &
