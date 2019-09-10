@@ -1,4 +1,4 @@
-" Load pathogen packages
+" //Load pathogen packages
 execute pathogen#infect()
 
 " ---------- Custom highlighting ----------
@@ -86,6 +86,9 @@ let g:ycm_filetype_blacklist = {}
 
 " Close scratch window
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" Rust source path
+let g:ycm_rust_src_path = '/home/bridger/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 
 " gitignore for ctrlp
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']

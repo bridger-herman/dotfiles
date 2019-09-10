@@ -37,9 +37,6 @@
 [submodule ".vim/bundle/vim-glsl"]
 	path = .vim/bundle/vim-glsl
 	url = https://github.com/tikhomirov/vim-glsl
-[submodule ".vim/bundle/vim-workspace"]
-	path = .vim/bundle/vim-workspace
-	url = https://github.com/thaerkh/vim-workspace
 [submodule ".vim/bundle/YouCompleteMe"]
 	path = .vim/bundle/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe.git
@@ -58,3 +55,6 @@
 [submodule ".vim/bundle/vim-session-manager"]
 	path = .vim/bundle/vim-session-manager
 	url = git@github.com:LiamTyler/vim-session-manager.git
+[submodule ".vim/bundle/vim-processing"]
+	path = .vim/bundle/vim-processing
+	url = https://github.com/nybblr/vim-processing
