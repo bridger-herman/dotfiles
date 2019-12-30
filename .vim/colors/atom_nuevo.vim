@@ -62,7 +62,7 @@ hi Statement cterm=NONE ctermfg=186 ctermbg=NONE gui=NONE guifg=#cfcb90 guibg=NO
 hi StatusLine cterm=NONE ctermfg=251 ctermbg=235 gui=NONE guifg=#c2c2c2 guibg=#262626
 hi StatusLineNC cterm=NONE ctermfg=242 ctermbg=235 gui=NONE guifg=#707070 guibg=#262626
 hi StorageClass cterm=NONE ctermfg=75 ctermbg=NONE gui=NONE guifg=#5fafff guibg=NONE
-hi String cterm=NONE ctermfg=155 ctermbg=NONE gui=NONE guifg=#a8ff61 guibg=#FFFFB6
+hi String cterm=NONE ctermfg=155 ctermbg=NONE gui=NONE guifg=#a8ff61 guibg=NONE
 hi Structure cterm=underline ctermfg=229 ctermbg=NONE gui=underline guifg=NONE guibg=NONE
 hi TabLine cterm=NONE ctermfg=242 ctermbg=235 gui=NONE guifg=#707070 guibg=#262626
 hi TabLineFill cterm=NONE ctermfg=NONE ctermbg=235 gui=NONE guifg=NONE guibg=#262626
