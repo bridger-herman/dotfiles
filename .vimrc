@@ -19,9 +19,9 @@ set showmatch " Bracket Matching
 set hlsearch " Highlight search matches
 
 " ---------- Language Settings ----------
-set tabstop=2 " Number of visual spaces per tab
-set shiftwidth=2 " Shift width
-set softtabstop=2 " Number of spaces in tab when editing
+set tabstop=4 " Number of visual spaces per tab
+set shiftwidth=4 " Shift width
+set softtabstop=4 " Number of spaces in tab when editing
 set expandtab " Spaces instead of tabs
 
 autocmd FileType python setlocal softtabstop=4 shiftwidth=4 " Python specific settings
@@ -31,6 +31,9 @@ au BufReadPost *.make set syntax=make
 autocmd FileType make setlocal noexpandtab " MakeFile specific settings
 
 autocmd FileType rust setlocal textwidth=80 " Rust-specific settings
+
+au BufReadPost *.md set syntax=markdown
+au BufReadPost *.md set filetype=markdown
 
 " Spell checker
 autocmd FileType html setlocal spell spelllang=en
