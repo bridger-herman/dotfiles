@@ -1,0 +1,10 @@
+{
+    "workbench.colorTheme": "Visual Studio 2019 Dark",
+    "editor.fontFamily": "'Fantasque Sans Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontSize": 15,
+    "vim.easymotion": true,
+    "vim.leader": ",",
+    "editor.lineNumbers": "relative",
+    "csharp.referencesCodeLens.enabled": false,
+    "editor.renderWhitespace": "boundary"
+}
