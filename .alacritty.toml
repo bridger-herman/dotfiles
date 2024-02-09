@@ -1,0 +1,41 @@
+# https://alacritty.org/config-alacritty.html
+
+# live reload whenever config is changed
+live_config_reload = true
+
+
+# Cursor configuration
+
+
+[cursor]
+style = "Block"
+unfocused_hollow = true
+
+
+# Font configuration
+[font]
+size = 13.0
+
+[font.normal]
+family = "Fantasque Sans Mono"
+style = "Regular"
+
+[font.bold]
+family = "Fantasque Sans Mono"
+style = "Bold"
+
+[font.italic]
+family = "Fantasque Sans Mono"
+style = "Italic"
+
+
+# Configure to open full screen
+[window.dimensions]
+columns = 0
+lines = 0
+
+[window]
+decorations = "full"
+dynamic_padding = false
+dynamic_title = true
+startup_mode = "Maximized"

@@ -3,21 +3,31 @@
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+# hack to enable pasting code in vim
+# https://github.com/alacritty/alacritty/issues/5636 
+# technically this is bad form because alacritty isn't xterm, but it's a
+# workaround that doesn't seem to have any trouble...
+export TERM=xterm
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-SSH=$(echo ${SSH_CONNECTION%% *})
-if [ -z $SSH ] ; then
-  ZSH_THEME="agnoster"
-else
-  MOBILE=$(host $SSH | grep "mobile")
-  LAB=$(host $SSH | grep "ibanez-umh")
-  if [[ -z $MOBILE ]] && [[ -z $LAB ]] ; then
-    ZSH_THEME="agnoster"
-  else
-    ZSH_THEME="candy"
-  fi
-fi
+
+ZSH_THEME="amuse"
+
+# Old news related to themes
+# SSH=$(echo ${SSH_CONNECTION%% *})
+# if [ -z $SSH ] ; then
+  # ZSH_THEME="agnoster"
+# else
+  # MOBILE=$(host $SSH | grep "mobile")
+  # LAB=$(host $SSH | grep "ibanez-umh")
+  # if [[ -z $MOBILE ]] && [[ -z $LAB ]] ; then
+    # ZSH_THEME="agnoster"
+  # else
+    # ZSH_THEME="candy"
+  # fi
+# fi
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -113,3 +123,4 @@ DEFAULT_USER=$USERNAME
 export LC_ALL=en_US.UTF-8
 
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/lib/python3.10/site-packages:$PATH"
