@@ -39,3 +39,11 @@ decorations = "full"
 dynamic_padding = false
 dynamic_title = true
 startup_mode = "Maximized"
+
+
+# open a new window with Ctrl+Shift+N
+[keyboard]
+bindings = [
+{ key = "N", mods = "Control|Shift", action = "CreateNewWindow" }
+]
+
