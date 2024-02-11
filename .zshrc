@@ -13,7 +13,7 @@ export TERM=xterm
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 
-ZSH_THEME="amuse"
+ZSH_THEME="re5et"
 
 # Old news related to themes
 # SSH=$(echo ${SSH_CONNECTION%% *})
