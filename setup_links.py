@@ -9,7 +9,11 @@ from fnmatch import fnmatch
 from pathlib import Path
 
 DEFAULT_DST= Path.home()
-IGNORE = [__file__, '.*.swp', '.git', '.gitignore', '.gitmodules']
+IGNORE = [__file__, '.*.swp', '.git', '.gitignore', '.gitmodules',
+        'qmk_firmware']
+CUSTOM_ADDITIONS = [
+        'qmk_firmware/keyboards/keebio/sinc/keymaps/bridger-herman'
+        ]
 CONFIG_DIR = '.config'
 
 def make_symlink(src, dst):
@@ -36,7 +40,7 @@ def make_symlink(src, dst):
 def main():
     fnames = [fname for fname in os.listdir() if not any([fnmatch(fname, p)
             for p in IGNORE]) and fname != CONFIG_DIR]
-    for fname in fnames:
+    for fname in fnames + CUSTOM_ADDITIONS:
         src = Path(fname).resolve()
         dst = DEFAULT_DST.joinpath(fname)
         make_symlink(src, dst)
