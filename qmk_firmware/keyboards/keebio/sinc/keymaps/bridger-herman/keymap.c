@@ -49,6 +49,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Initialization
 ////////////////////////////////////////////////////////////////////////////////
 void keyboard_post_init_user(void) {
+    rgb_matrix_enable();
+
     // a decent color
     rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
     rgb_matrix_sethsv(170, 255, 100);
@@ -178,20 +180,29 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 // Shutdown
 ////////////////////////////////////////////////////////////////////////////////
 
-bool shutdown_user(bool jump_to_bootloader) {
-    if (jump_to_bootloader) {
-        // red for bootloader
-        rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
-        rgb_matrix_sethsv(HSV_RED);
-    } else {
-        // off for soft reset
-        rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
-        rgb_matrix_sethsv(HSV_OFF);
-    }
-    // force flushing -- otherwise will never happen
-    /* rgb_matrix_update_pwm_buffers(); */
-    /* eeconfig_update_rgb_matrix(); */
-
-    // false to not process kb level
-    return false;
+void suspend_power_down_user() {
+    rgb_matrix_disable_noeeprom();
 }
+
+void suspend_wakeup_init_user(void) {
+    rgb_matrix_enable();
+}
+
+// does not seem to do anything
+/* bool shutdown_user(bool jump_to_bootloader) { */
+    /* if (jump_to_bootloader) { */
+        /* // red for bootloader */
+        /* rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR); */
+        /* rgb_matrix_sethsv(HSV_RED); */
+    /* } else { */
+        /* // off for soft reset */
+        /* rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR); */
+        /* rgb_matrix_sethsv(HSV_OFF); */
+    /* } */
+    /* // force flushing -- otherwise will never happen */
+    /* [> rgb_matrix_update_pwm_buffers(); <] */
+    /* [> eeconfig_update_rgb_matrix(); <] */
+
+    /* // false to not process kb level */
+    /* return false; */
+/* } */
