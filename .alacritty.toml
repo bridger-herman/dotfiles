@@ -38,7 +38,7 @@ lines = 0
 decorations = "full"
 dynamic_padding = false
 dynamic_title = true
-startup_mode = "Maximized"
+# startup_mode = "Maximized"
 
 
 # open a new window with Ctrl+Shift+N

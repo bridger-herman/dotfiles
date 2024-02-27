@@ -77,6 +77,12 @@ set splitbelow
 
 set textwidth=78
 
+" control cursor and tabs with mouse
+set mouse=a
+
+" disable F1 help key
+nmap <F1> <nop>
+
 " ---------- Plugin Settings ----------
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
