@@ -1,5 +1,7 @@
-// Copyright 2023 Danny Nguyen (danny@keeb.io)
+// Copyright 2023 Danny Nguyen (danny@keeb.io), 2024 Bridger Herman (bridger-herman.github.io)
 // SPDX-License-Identifier: GPL-2.0-or-later
+//
+// LED index codes may be found in keebio-sinc-rev4-leds.svg
 
 #include QMK_KEYBOARD_H
 #include "print.h"
@@ -17,7 +19,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_PSCR,   KC_PGUP,       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                KC_Y,    KC_U,    KC_I,      KC_O,     KC_P,  KC_LBRC, KC_RBRC, KC_BSLS,  _______,
     _______,   KC_PGDN,      KC_CAPS,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                KC_H,    KC_J,    KC_K,      KC_L,  KC_SCLN,  KC_QUOT,           KC_ENT,  KC_HOME,
     _______,   _______,      KC_LSFT,             KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                KC_N,    KC_M,   KC_COMM,   KC_DOT,  KC_SLSH, KC_RSFT,   KC_UP,   KC_END,
-    _______,   _______,      KC_LCTL, KC_LGUI, KC_LALT,   MO(1), XXXXXXX,  KC_SPC,                      XXXXXXX,  KC_SPC,   KC_RALT,  KC_RGUI,  KC_RCTL, KC_LEFT, KC_DOWN,  KC_RGHT
+    TG(2),   _______,      KC_LCTL, KC_LGUI, KC_LALT,   MO(1), XXXXXXX,  KC_SPC,                      XXXXXXX,  KC_SPC,   KC_RALT,  KC_RGUI,  KC_RCTL, KC_LEFT, KC_DOWN,  KC_RGHT
   ),
   [1] = LAYOUT_80_with_macro(
     _______,                 KC_SLEP, _______, _______, _______, _______, _______, _______,             _______, _______,   _______,  _______,  _______, _______, _______,  _______,
@@ -26,6 +28,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,   _______,      _______, _______,   KC_P4,   KC_P5,   KC_P6, _______,             KC_LEFT, KC_DOWN,   KC_UP,  KC_RIGHT,  _______,  _______,          _______,  _______,
     _______,   _______,      _______,            KC_P0,   KC_P1,   KC_P2,   KC_P3, KC_PDOT,             _______, _______,   _______,  _______,  _______, _______, _______,  _______,
     _______,   _______,      _______, _______, _______, _______, _______, _______,                      _______, _______,   _______,  _______,  _______, _______, _______,  _______
+  ),
+  [2] = LAYOUT_80_with_macro(
+    _______,                 _______, _______, _______, _______, _______, _______, _______,             _______, _______,   _______,  _______,  _______, _______, _______,  _______,
+    _______,   _______,      _______, _______, _______, _______, _______, _______, _______,             _______, _______,   _______,  _______,  _______, _______, _______,  _______, _______,
+    _______,   _______,      _______, _______,   KC_P7,   KC_P8,   KC_P9, _______,             _______,   KC_P7,   KC_P8,     KC_P9,  _______,  _______, _______, _______,  _______,
+    _______,   _______,      _______, _______,   KC_P4,   KC_P5,   KC_P6, _______,             _______,   KC_P4,   KC_P5,     KC_P6,  _______,  _______,          _______,  _______,
+    _______,   _______,      _______,            KC_P0,   KC_P1,   KC_P2,   KC_P3, KC_PDOT,               KC_P0,   KC_P1,     KC_P2,    KC_P3,  KC_PDOT, _______, _______,  _______,
+    TG(2),   _______,      _______, _______, _______, _______, _______, _______,                      _______, _______,   _______,  _______,  _______, _______, _______,  _______
   ),
 };
 
@@ -95,11 +105,10 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case MC_CLOS:
-            // send Alt+F4 to close windows
-            register_code(KC_LALT);
-            register_code(KC_F4);
-            unregister_code(KC_LALT);
-            unregister_code(KC_F4);
+            if (record->event.pressed) {
+                // send Alt+F4 to close windows
+                tap_code16(LALT(KC_F4));
+            }
             break;
         default:
             break;
@@ -119,17 +128,33 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     }
 
     // Layer indicator (highlight the affected keys when it's on)
-    const int fn_keys[14] = {
+    const int fn_keys_1[15] = {
         88, 89, 90, 91, // vim-like arrow keys
         19, 20, 21,     // numpad left hand
         26, 25, 24,     // numpad left hand
-        30, 31, 32, 33  // numpad left hand
+        30, 31, 32, 33, 35  // numpad left hand
+    };
+    const int fn_keys_2[22] = {
+        19, 20, 21,     // numpad left hand
+        26, 25, 24,     // numpad left hand
+        30, 31, 32, 33, 35,  // numpad left hand
+        86, 85, 84,     // numpad right hand
+        89, 90, 91,     // numpad right hand
+        103, 102, 101, 100, 99  // numpad right hand
     };
     switch(get_highest_layer(layer_state|default_layer_state)) {
+        case 2:
+            // Normal fn layer keys
+            for (int i = 0; i < 22; i++) {
+                rgb_matrix_set_color(fn_keys_2[i], 0x22, 0xff, 0x88);
+            }
+            // layer indicator toggle
+            rgb_matrix_set_color(47, 0x22, 0xff, 0x88);
+            break;
         case 1:
             // Normal fn layer keys
             for (int i = 0; i < 14; i++) {
-                rgb_matrix_set_color(fn_keys[i], 0x22, 0xff, 0x88);
+                rgb_matrix_set_color(fn_keys_1[i], 0x22, 0xff, 0x88);
             }
 
             // special cases
