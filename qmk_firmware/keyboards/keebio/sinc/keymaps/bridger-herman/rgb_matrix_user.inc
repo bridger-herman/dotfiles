@@ -1,3 +1,22 @@
+// Custom color declarations
+// Base color
+#define HSV_BASE1_T (HSV) {137, 255, 100}
+#define RGB_BASE1_T hsv_to_rgb(HSV_BASE1_T)
+#define HSV_BASE1 HSV_BASE1_T.h, HSV_BASE1_T.s, HSV_BASE1_T.v
+#define RGB_BASE1 RGB_BASE1_T.r, RGB_BASE1_T.g, RGB_BASE1_T.b
+
+// Highlight 1
+#define HSV_HI1_T (HSV) {15, 255, 120}
+#define RGB_HI1_T hsv_to_rgb(HSV_HI1_T)
+#define HSV_HI1 HSV_HI1_T.h, HSV_HI1_T.s, HSV_HI1_T.v
+#define RGB_HI1 RGB_HI1_T.r, RGB_HI1_T.g, RGB_HI1_T.b
+
+// Highlight 2
+#define HSV_HI2_T (HSV) {244, 255, 120}
+#define RGB_HI2_T hsv_to_rgb(HSV_HI2_T)
+#define HSV_HI2 HSV_HI2_T.h, HSV_HI2_T.s, HSV_HI2_T.v
+#define RGB_HI2 RGB_HI2_T.r, RGB_HI2_T.g, RGB_HI2_T.b
+
 // Declare custom effects using the RGB_MATRIX_EFFECT macro
 RGB_MATRIX_EFFECT(alpha_blocks)
 RGB_MATRIX_EFFECT(debug_indexing_snake)
@@ -19,6 +38,7 @@ static void debug_indexing_snake_init(effect_params_t* params) {
     key_index = 1;
     loop_index = 0;
 }
+
 
 static bool debug_indexing_snake_run(effect_params_t* params) {
     RGB_MATRIX_USE_LIMITS(led_min, led_max);

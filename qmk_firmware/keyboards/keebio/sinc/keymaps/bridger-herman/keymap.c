@@ -6,6 +6,11 @@
 #include QMK_KEYBOARD_H
 #include "print.h"
 
+
+////////////////////////////////////////////////////////////////////////////////
+// Custom keycodes and key layout
+////////////////////////////////////////////////////////////////////////////////
+
 enum custom_keycodes {
     // Macros
     MC_CLOS = SAFE_RANGE // keep enum to safe outside QMK's ranges
@@ -19,23 +24,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_PSCR,   KC_PGUP,       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                KC_Y,    KC_U,    KC_I,      KC_O,     KC_P,  KC_LBRC, KC_RBRC, KC_BSLS,  _______,
     _______,   KC_PGDN,      KC_CAPS,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                KC_H,    KC_J,    KC_K,      KC_L,  KC_SCLN,  KC_QUOT,           KC_ENT,  KC_HOME,
     _______,   _______,      KC_LSFT,             KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                KC_N,    KC_M,   KC_COMM,   KC_DOT,  KC_SLSH, KC_RSFT,   KC_UP,   KC_END,
-    TG(2),   _______,      KC_LCTL, KC_LGUI, KC_LALT,   MO(1), XXXXXXX,  KC_SPC,                      XXXXXXX,  KC_SPC,   KC_RALT,  KC_RGUI,  KC_RCTL, KC_LEFT, KC_DOWN,  KC_RGHT
+    _______,     TG(2),      KC_LCTL, KC_LGUI, KC_LALT,   MO(1), XXXXXXX,  KC_SPC,                      XXXXXXX,  KC_SPC,   KC_RALT,  KC_RGUI,  KC_RCTL, KC_LEFT, KC_DOWN,  KC_RGHT
   ),
   [1] = LAYOUT_80_with_macro(
     _______,                 KC_SLEP, _______, _______, _______, _______, _______, _______,             _______, _______,   _______,  _______,  _______, _______, _______,  _______,
     _______,   _______,      _______, _______, _______, _______, _______, _______, _______,             _______, _______,   _______,  _______,  _______, _______, _______,  _______, _______,
     _______,   _______,      _______, MC_CLOS,   KC_P7,   KC_P8,   KC_P9, _______,             _______, _______, _______,   _______,  _______,  _______, _______, _______,  _______,
     _______,   _______,      _______, _______,   KC_P4,   KC_P5,   KC_P6, _______,             KC_LEFT, KC_DOWN,   KC_UP,  KC_RIGHT,  _______,  _______,          _______,  _______,
-    _______,   _______,      _______,            KC_P0,   KC_P1,   KC_P2,   KC_P3, KC_PDOT,             _______, _______,   _______,  _______,  _______, _______, _______,  _______,
-    _______,   _______,      _______, _______, _______, _______, _______, _______,                      _______, _______,   _______,  _______,  _______, _______, _______,  _______
+    _______,   _______,      _______,          KC_PDOT,   KC_P1,   KC_P2,   KC_P3, KC_PDOT,             _______, _______,   _______,  _______,  _______, _______, _______,  _______,
+    _______,   _______,      _______, _______, _______, _______, _______,   KC_P0,                      _______, _______,   _______,  _______,  _______, _______, _______,  _______
   ),
   [2] = LAYOUT_80_with_macro(
     _______,                 _______, _______, _______, _______, _______, _______, _______,             _______, _______,   _______,  _______,  _______, _______, _______,  _______,
     _______,   _______,      _______, _______, _______, _______, _______, _______, _______,             _______, _______,   _______,  _______,  _______, _______, _______,  _______, _______,
-    _______,   _______,      _______, _______,   KC_P7,   KC_P8,   KC_P9, _______,             _______,   KC_P7,   KC_P8,     KC_P9,  _______,  _______, _______, _______,  _______,
-    _______,   _______,      _______, _______,   KC_P4,   KC_P5,   KC_P6, _______,             _______,   KC_P4,   KC_P5,     KC_P6,  _______,  _______,          _______,  _______,
-    _______,   _______,      _______,            KC_P0,   KC_P1,   KC_P2,   KC_P3, KC_PDOT,               KC_P0,   KC_P1,     KC_P2,    KC_P3,  KC_PDOT, _______, _______,  _______,
-    TG(2),   _______,      _______, _______, _______, _______, _______, _______,                      _______, _______,   _______,  _______,  _______, _______, _______,  _______
+    _______,   _______,      _______, _______, _______, _______, _______, _______,               KC_P7,   KC_P8,   KC_P9,   _______,  _______,  _______, _______, _______,  _______,
+    _______,   _______,      _______, _______, _______, _______, _______, _______,               KC_P4,   KC_P5,   KC_P6,   _______,  _______,  _______,          _______,  _______,
+    _______,   _______,      _______,          _______, _______, _______, _______, _______,               KC_P1,   KC_P2,     KC_P3,  _______,  _______, _______, _______,  _______,
+    _______,     TG(2),      _______, _______, _______, _______, _______, _______,                      _______,   KC_P0,   KC_PDOT,  _______,  _______, _______, _______,  _______
   ),
 };
 
@@ -53,7 +58,7 @@ void keyboard_post_init_user(void) {
 
     // a decent color
     rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
-    rgb_matrix_sethsv(170, 255, 100);
+    rgb_matrix_sethsv(HSV_BASE1);
 
     // just turn it off
     /* rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR); */
@@ -124,46 +129,52 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     // Caps lock (highlight red when it's on)
     if (host_keyboard_led_state().caps_lock) {
-        rgb_matrix_set_color(28, RGB_RED);
+        rgb_matrix_set_color(28, RGB_HI2);
     } else {
         rgb_matrix_set_color(28, RGB_OFF);
     }
 
     // Layer indicator (highlight the affected keys when it's on)
-    const int fn_keys_1[15] = {
+    const int fn_keys_1[19] = {
         88, 89, 90, 91, // vim-like arrow keys
         19, 20, 21,     // numpad left hand
         26, 25, 24,     // numpad left hand
-        30, 31, 32, 33, 35  // numpad left hand
+        30, 31, 32, 33, // numpad left hand
+        39, 38, 37, 36  // numpad left hand
     };
-    const int fn_keys_2[22] = {
+    const int fn_keys_2[27] = {
         19, 20, 21,     // numpad left hand
         26, 25, 24,     // numpad left hand
         30, 31, 32, 33, 35,  // numpad left hand
-        86, 85, 84,     // numpad right hand
-        89, 90, 91,     // numpad right hand
-        103, 102, 101, 100, 99  // numpad right hand
+        39, 38, 37, 36,  // numpad left hand
+        87, 86, 85,     // numpad right hand
+        88, 89, 90,     // numpad right hand
+        103, 102, 101,  // numpad right hand
+        105, 106, 107  // numpad right hand
     };
-    switch(get_highest_layer(layer_state|default_layer_state)) {
+    switch (get_highest_layer(layer_state | default_layer_state)) {
         case 2:
             // Normal fn layer keys
-            for (int i = 0; i < 22; i++) {
-                rgb_matrix_set_color(fn_keys_2[i], 0x22, 0xff, 0x88);
+            for (int i = 0; i < 27; i++) {
+                /* rgb_matrix_set_color(fn_keys_2[i], 0x22, 0xff, 0x88); */
+                rgb_matrix_set_color(fn_keys_2[i], RGB_HI1);
             }
             // layer indicator toggle
-            rgb_matrix_set_color(47, 0x22, 0xff, 0x88);
+            /* rgb_matrix_set_color(47, 0x22, 0xff, 0x88); */
+            rgb_matrix_set_color(45, RGB_HI1);
             break;
         case 1:
             // Normal fn layer keys
-            for (int i = 0; i < 14; i++) {
-                rgb_matrix_set_color(fn_keys_1[i], 0x22, 0xff, 0x88);
+            for (int i = 0; i < 19; i++) {
+                /* rgb_matrix_set_color(fn_keys_1[i], 0x22, 0xff, 0x88); */
+                rgb_matrix_set_color(fn_keys_1[i], RGB_HI1);
             }
 
             // special cases
             // "quit" key
-            rgb_matrix_set_color(18, RGB_RED);
+            rgb_matrix_set_color(18, RGB_HI2);
             // "sleep" key
-            rgb_matrix_set_color(0, RGB_RED);
+            rgb_matrix_set_color(0, RGB_HI2);
             break;
         default:
             break;
@@ -180,13 +191,14 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 // Shutdown
 ////////////////////////////////////////////////////////////////////////////////
 
-void suspend_power_down_user() {
-    rgb_matrix_disable_noeeprom();
-}
+// also does not seem to do anything
+/* void suspend_power_down_user() { */
+    /* rgb_matrix_disable_noeeprom(); */
+/* } */
 
-void suspend_wakeup_init_user(void) {
-    rgb_matrix_enable();
-}
+/* void suspend_wakeup_init_user(void) { */
+    /* rgb_matrix_enable(); */
+/* } */
 
 // does not seem to do anything
 /* bool shutdown_user(bool jump_to_bootloader) { */
