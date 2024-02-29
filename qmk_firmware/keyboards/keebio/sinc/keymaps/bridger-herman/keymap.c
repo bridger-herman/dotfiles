@@ -27,12 +27,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,     TG(2),      KC_LCTL, KC_LGUI, KC_LALT,   MO(1), XXXXXXX,  KC_SPC,                      XXXXXXX,  KC_SPC,   KC_RALT,  KC_RGUI,  KC_RCTL, KC_LEFT, KC_DOWN,  KC_RGHT
   ),
   [1] = LAYOUT_80_with_macro(
-    _______,                 KC_SLEP, _______, _______, _______, _______, _______, _______,             _______, _______,   _______,  _______,  _______, _______, _______,  _______,
-    _______,   _______,      _______, _______, _______, _______, _______, _______, _______,             _______, _______,   _______,  _______,  _______, _______, _______,  _______, _______,
-    _______,   _______,      _______, MC_CLOS,   KC_P7,   KC_P8,   KC_P9, _______,             _______, _______, _______,   _______,  _______,  _______, _______, _______,  _______,
-    _______,   _______,      _______, _______,   KC_P4,   KC_P5,   KC_P6, _______,             KC_LEFT, KC_DOWN,   KC_UP,  KC_RIGHT,  _______,  _______,          _______,  _______,
-    _______,   _______,      _______,          KC_PDOT,   KC_P1,   KC_P2,   KC_P3, KC_PDOT,             _______, _______,   _______,  _______,  _______, _______, _______,  _______,
-    _______,   _______,      _______, _______, _______, _______, _______,   KC_P0,                      _______, _______,   _______,  _______,  _______, _______, _______,  _______
+    RGB_TOG,                 KC_SLEP, _______, _______, _______, _______, _______, _______,             _______, _______,   _______,  _______,  _______, _______, _______,  _______,
+   RGB_RMOD,   RGB_MOD,      _______, _______, _______, _______, _______, _______, _______,             _______, _______,   _______,  _______,  _______, _______, _______,  _______, _______,
+    RGB_SPD,   RGB_SPI,      _______, MC_CLOS,   KC_P7,   KC_P8,   KC_P9, _______,             _______, _______, _______,   _______,  _______,  _______, _______, _______,  _______,
+    RGB_HUD,   RGB_HUI,      _______, _______,   KC_P4,   KC_P5,   KC_P6, _______,             KC_LEFT, KC_DOWN,   KC_UP,  KC_RIGHT,  _______,  _______,          _______,  _______,
+    RGB_SAD,   RGB_SAI,      _______,          KC_PDOT,   KC_P1,   KC_P2,   KC_P3, KC_PDOT,             _______, _______,   _______,  _______,  _______, _______, _______,  _______,
+    RGB_VAD,   RGB_VAI,      _______, _______, _______, _______, _______,   KC_P0,                      _______, _______,   _______,  _______,  _______, _______, _______,  _______
   ),
   [2] = LAYOUT_80_with_macro(
     _______,                 _______, _______, _______, _______, _______, _______, _______,             _______, _______,   _______,  _______,  _______, _______, _______,  _______,
@@ -135,12 +135,18 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     }
 
     // Layer indicator (highlight the affected keys when it's on)
-    const int fn_keys_1[19] = {
+    const int fn_keys_1[30] = {
         88, 89, 90, 91, // vim-like arrow keys
         19, 20, 21,     // numpad left hand
         26, 25, 24,     // numpad left hand
         30, 31, 32, 33, // numpad left hand
-        39, 38, 37, 36  // numpad left hand
+        39, 38, 37, 36, // numpad left hand
+        57,
+        55, 54,          // LED toggles on macropad
+        52, 53,          // LED toggles on macropad
+        51, 50,          // LED toggles on macropad
+        48, 49,          // LED toggles on macropad
+        47, 45,          // LED toggles on macropad
     };
     const int fn_keys_2[27] = {
         19, 20, 21,     // numpad left hand
@@ -165,7 +171,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             break;
         case 1:
             // Normal fn layer keys
-            for (int i = 0; i < 19; i++) {
+            for (int i = 0; i < 30; i++) {
                 /* rgb_matrix_set_color(fn_keys_1[i], 0x22, 0xff, 0x88); */
                 rgb_matrix_set_color(fn_keys_1[i], RGB_HI1);
             }
