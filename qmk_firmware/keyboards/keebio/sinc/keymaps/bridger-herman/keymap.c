@@ -8,31 +8,53 @@
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// Custom keycodes and key layout
+// Custom configurations
 ////////////////////////////////////////////////////////////////////////////////
 
 enum custom_keycodes {
     // Macros
-    MC_CLOS = SAFE_RANGE // keep enum to safe outside QMK's ranges
+    MC_CLOS = SAFE_RANGE, // keep enum to safe outside QMK's ranges
 };
+
+
+enum {
+    // Tap Dance
+    TD_HOME_PGUP,
+    TD_END_PGDN,
+};
+
+
+// Tap Dance Definitions
+tap_dance_action_t tap_dance_actions[] = {
+    // Tap once for Home, twice for Page Up
+    [TD_HOME_PGUP] = ACTION_TAP_DANCE_DOUBLE(KC_HOME, KC_PGUP),
+
+    // Tap once for End, twice for Page Down
+    [TD_END_PGDN] = ACTION_TAP_DANCE_DOUBLE(KC_END, KC_PGDN),
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Keymap
+////////////////////////////////////////////////////////////////////////////////
 
 // The main keymaps/layers
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_80_with_macro(
-    KC_ESC ,                  KC_ESC,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,               KC_F7,   KC_F8,     KC_F9,   KC_F10,   KC_F11,  KC_F12,  KC_INS,  KC_MUTE,
+    _______,                  KC_ESC,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,               KC_F7,   KC_F8,     KC_F9,   KC_F10,   KC_F11,  KC_F12,  KC_INS,  KC_MUTE,
     _______,   _______,       KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,                KC_7,    KC_8,      KC_9,     KC_0,  KC_MINS,  KC_EQL, XXXXXXX,  KC_BSPC, KC_DEL,
-    KC_PSCR,   KC_PGUP,       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                KC_Y,    KC_U,    KC_I,      KC_O,     KC_P,  KC_LBRC, KC_RBRC, KC_BSLS,  _______,
-    _______,   KC_PGDN,      KC_CAPS,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                KC_H,    KC_J,    KC_K,      KC_L,  KC_SCLN,  KC_QUOT,           KC_ENT,  KC_HOME,
-    _______,   _______,      KC_LSFT,             KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                KC_N,    KC_M,   KC_COMM,   KC_DOT,  KC_SLSH, KC_RSFT,   KC_UP,   KC_END,
+    _______,   _______,       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                KC_Y,    KC_U,    KC_I,      KC_O,     KC_P,  KC_LBRC, KC_RBRC, KC_BSLS,  KC_PSCR,
+    _______,   _______,      KC_CAPS,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                KC_H,    KC_J,    KC_K,      KC_L,  KC_SCLN,  KC_QUOT,           KC_ENT, TD(TD_HOME_PGUP),
+    _______,   _______,      KC_LSFT,             KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                KC_N,    KC_M,   KC_COMM,   KC_DOT,  KC_SLSH, KC_RSFT,   KC_UP, TD(TD_END_PGDN),
     _______,     TG(2),      KC_LCTL, KC_LGUI, KC_LALT,   MO(1), XXXXXXX,  KC_SPC,                      XXXXXXX,  KC_SPC,   KC_RALT,  KC_RGUI,  KC_RCTL, KC_LEFT, KC_DOWN,  KC_RGHT
   ),
   [1] = LAYOUT_80_with_macro(
-    RGB_TOG,                 KC_SLEP, _______, _______, _______, _______, _______, _______,             _______, _______,   _______,  _______,  _______, _______, _______,  _______,
-   RGB_RMOD,   RGB_MOD,      _______, _______, _______, _______, _______, _______, _______,             _______, _______,   _______,  _______,  _______, _______, _______,  _______, _______,
-    RGB_SPD,   RGB_SPI,      _______, MC_CLOS,   KC_P7,   KC_P8,   KC_P9, _______,             _______, _______, _______,   _______,  _______,  _______, _______, _______,  _______,
-    RGB_HUD,   RGB_HUI,      _______, _______,   KC_P4,   KC_P5,   KC_P6, _______,             KC_LEFT, KC_DOWN,   KC_UP,  KC_RIGHT,  _______,  _______,          _______,  _______,
-    RGB_SAD,   RGB_SAI,      _______,          KC_PDOT,   KC_P1,   KC_P2,   KC_P3, KC_PDOT,             _______, _______,   _______,  _______,  _______, _______, _______,  _______,
-    RGB_VAD,   RGB_VAI,      _______, _______, _______, _______, _______,   KC_P0,                      _______, _______,   _______,  _______,  _______, _______, _______,  _______
+    RGB_TOG,                 KC_SLEP, KC_WAKE, _______, _______, _______, _______, _______,             _______, _______,   _______,  _______,  _______, _______, _______,  _______,
+   RGB_RMOD,   RGB_MOD,      MC_CLOS, _______, _______, _______, _______, _______, _______,             _______, _______,   _______,  _______,  _______, _______, _______,  _______, _______,
+    RGB_SPD,   RGB_SPI,      _______,   KC_P7,   KC_P8,   KC_P9, KC_PSLS, _______,             _______, _______, _______,   _______,  _______,  _______, _______, _______,  _______,
+    RGB_HUD,   RGB_HUI,      _______,   KC_P4,   KC_P5,   KC_P6, KC_PAST, _______,             KC_LEFT, KC_DOWN,   KC_UP,  KC_RIGHT,  _______,  _______,          _______,  _______,
+    RGB_SAD,   RGB_SAI,      KC_PENT,            KC_P1,   KC_P2,   KC_P3, KC_PMNS, _______,    _______, _______,   _______,  _______,  _______, _______, _______,  _______,
+    RGB_VAD,   RGB_VAI,      _______, KC_PDOT,   KC_P0, _______, XXXXXXX, KC_PPLS,                      _______, _______,   _______,  _______,  _______, _______, _______,  _______
   ),
   [2] = LAYOUT_80_with_macro(
     _______,                 _______, _______, _______, _______, _______, _______, _______,             _______, _______,   _______,  _______,  _______, _______, _______,  _______,
@@ -135,12 +157,12 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     }
 
     // Layer indicator (highlight the affected keys when it's on)
-    const int fn_keys_1[30] = {
+    const int fn_keys_1[34] = {
         88, 89, 90, 91, // vim-like arrow keys
-        19, 20, 21,     // numpad left hand
-        26, 25, 24,     // numpad left hand
-        30, 31, 32, 33, // numpad left hand
-        39, 38, 37, 36, // numpad left hand
+        18, 19, 20, 21,  // numpad left hand
+        27, 26, 25, 24,  // numpad left hand
+        29, 30, 31, 32, 33, // numpad left hand
+        42, 41, 39, 38, 37, 36, // numpad left hand
         57,
         55, 54,          // LED toggles on macropad
         52, 53,          // LED toggles on macropad
@@ -148,11 +170,12 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
         48, 49,          // LED toggles on macropad
         47, 45,          // LED toggles on macropad
     };
-    const int fn_keys_2[27] = {
-        19, 20, 21,     // numpad left hand
-        26, 25, 24,     // numpad left hand
-        30, 31, 32, 33, 35,  // numpad left hand
-        39, 38, 37, 36,  // numpad left hand
+    const int fn_keys_2[35] = {
+        88, 89, 90, 91, // vim-like arrow keys
+        18, 19, 20, 21,  // numpad left hand
+        27, 26, 25, 24,  // numpad left hand
+        29, 30, 31, 32, 33, // numpad left hand
+        42, 41, 39, 38, 37, 36, // numpad left hand
         87, 86, 85,     // numpad right hand
         88, 89, 90,     // numpad right hand
         103, 102, 101,  // numpad right hand
@@ -161,24 +184,21 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     switch (get_highest_layer(layer_state | default_layer_state)) {
         case 2:
             // Normal fn layer keys
-            for (int i = 0; i < 27; i++) {
-                /* rgb_matrix_set_color(fn_keys_2[i], 0x22, 0xff, 0x88); */
+            for (int i = 0; i < 35; i++) {
                 rgb_matrix_set_color(fn_keys_2[i], RGB_HI1);
             }
             // layer indicator toggle
-            /* rgb_matrix_set_color(47, 0x22, 0xff, 0x88); */
             rgb_matrix_set_color(45, RGB_HI1);
             break;
         case 1:
             // Normal fn layer keys
-            for (int i = 0; i < 30; i++) {
-                /* rgb_matrix_set_color(fn_keys_1[i], 0x22, 0xff, 0x88); */
+            for (int i = 0; i < 34; i++) {
                 rgb_matrix_set_color(fn_keys_1[i], RGB_HI1);
             }
 
             // special cases
             // "quit" key
-            rgb_matrix_set_color(18, RGB_HI2);
+            rgb_matrix_set_color(16, RGB_HI2);
             // "sleep" key
             rgb_matrix_set_color(0, RGB_HI2);
             break;
