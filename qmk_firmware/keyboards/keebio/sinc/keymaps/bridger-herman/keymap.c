@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     RGB_TOG,                 KC_SLEP, KC_WAKE, _______, _______, _______, _______, _______,             _______, _______,   _______,  _______,  _______, _______, _______,  _______,
    RGB_RMOD,   RGB_MOD,      MC_CLOS, _______, _______, _______, _______, _______, _______,             _______, _______,   _______,  _______,  _______, _______, _______,  _______, _______,
     RGB_SPD,   RGB_SPI,      _______,   KC_P7,   KC_P8,   KC_P9, _______, _______,             _______, _______, _______,   _______,  _______,  _______, _______, _______,  _______,
-    RGB_HUD,   RGB_HUI,      _______,   KC_P4,   KC_P5,   KC_P6, _______, _______,             KC_LEFT, KC_DOWN,   KC_UP,  KC_RIGHT,  _______,  _______,          _______,  _______,
+    RGB_HUD,   RGB_HUI,      _______,   KC_P4,   KC_P5,   KC_P6, KC_PENT, _______,             KC_LEFT, KC_DOWN,   KC_UP,  KC_RIGHT,  _______,  _______,          _______,  _______,
     RGB_SAD,   RGB_SAI,      _______,            KC_P1,   KC_P2,   KC_P3, KC_PDOT, _______,             _______, _______,   _______,  _______,  _______, _______, _______,  _______,
     RGB_VAD,   RGB_VAI,      _______, _______, _______, _______, XXXXXXX,   KC_P0,                      _______, _______,   _______,  _______,  _______, _______, _______,  _______
   ),
@@ -157,10 +157,10 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
     }
 
     // Layer indicator (highlight the affected keys when it's on)
-    const int fn_keys_1[29] = {
+    const int fn_keys_1[30] = {
         88, 89, 90, 91, // vim-like arrow keys
         18, 19, 20,  // numpad left hand
-        27, 26, 25,  // numpad left hand
+        27, 26, 25, 24,  // numpad left hand
         30, 31, 32, 33, // numpad left hand
         39, 38, 37, 36, // numpad left hand
         57,
@@ -184,7 +184,7 @@ bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
             break;
         case 1:
             // Normal fn layer keys
-            for (int i = 0; i < 29; i++) {
+            for (int i = 0; i < 30; i++) {
                 rgb_matrix_set_color(fn_keys_1[i], RGB_HI1);
             }
 
