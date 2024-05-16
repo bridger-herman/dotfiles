@@ -1,18 +1,21 @@
 // Custom color declarations
 // Base color
-#define HSV_BASE1_T (HSV) {137, 255, 100}
+// #define HSV_BASE1_T (HSV) {137, 255, 100} // blue
+#define HSV_BASE1_T (HSV) {(131.0 / 360.0) * 255, (100.0 / 100.0) * 255, (82.0 / 100.0) * 255}
 #define RGB_BASE1_T hsv_to_rgb(HSV_BASE1_T)
 #define HSV_BASE1 HSV_BASE1_T.h, HSV_BASE1_T.s, HSV_BASE1_T.v
 #define RGB_BASE1 RGB_BASE1_T.r, RGB_BASE1_T.g, RGB_BASE1_T.b
 
 // Highlight 1
-#define HSV_HI1_T (HSV) {15, 255, 120}
+// #define HSV_HI1_T (HSV) {15, 255, 120} // orange
+#define HSV_HI1_T (HSV) {(28.0 / 360.0) * 255, (100.0 / 100.0) * 255, (60.0 / 100.0) * 255} // orange
 #define RGB_HI1_T hsv_to_rgb(HSV_HI1_T)
 #define HSV_HI1 HSV_HI1_T.h, HSV_HI1_T.s, HSV_HI1_T.v
 #define RGB_HI1 RGB_HI1_T.r, RGB_HI1_T.g, RGB_HI1_T.b
 
 // Highlight 2
-#define HSV_HI2_T (HSV) {244, 255, 120}
+// #define HSV_HI2_T (HSV) {244, 255, 120} // pink
+#define HSV_HI2_T (HSV) {(268.0 / 360.0) * 255, (100.0 / 100.0) * 255, (82.0 / 100.0) * 255} // orange
 #define RGB_HI2_T hsv_to_rgb(HSV_HI2_T)
 #define HSV_HI2 HSV_HI2_T.h, HSV_HI2_T.s, HSV_HI2_T.v
 #define RGB_HI2 RGB_HI2_T.r, RGB_HI2_T.g, RGB_HI2_T.b
